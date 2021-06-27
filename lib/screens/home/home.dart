@@ -1,21 +1,11 @@
-import 'dart:io';
-import 'package:atsign_ecare/routes/route_names.dart';
-import 'package:atsign_ecare/screens/common_widgets/custom_button.dart';
 import 'package:atsign_ecare/services/backend_service.dart';
-import 'package:atsign_ecare/services/navigation_service.dart';
 import 'package:atsign_ecare/services/size_config.dart';
 import 'package:atsign_ecare/utils/colors.dart';
-import 'package:atsign_ecare/utils/constants.dart';
 import 'package:atsign_ecare/utils/images.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
-import 'package:atsign_ecare/utils/text_styles.dart';
-
-import 'package:file_picker/file_picker.dart';
+import 'package:atsign_ecare/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:google_fonts/google_fonts.dart';
-import 'package:path/path.dart' show basename;
-import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 // import 'package:provider/provider.dart';
 // import 'package:receive_sharing_intent/receive_sharing_intent.dart';
@@ -113,7 +103,7 @@ class _HomeState extends State<Home> {
                           Expanded(
                             flex: 6,
                             child: Text(
-                              TextStrings().homeFileTransferItsSafe,
+                              "TextStrings().homeFileTransferItsSafe",
                               style: GoogleFonts.playfairDisplay(
                                 textStyle: TextStyle(
                                   fontSize: 38.toFont,
@@ -127,14 +117,15 @@ class _HomeState extends State<Home> {
                             flex: 2,
                             child: Text.rich(
                               TextSpan(
-                                text: TextStrings().homeHassleFree,
+                                text: "TextStrings().homeHassleFree",
                                 style: TextStyle(
                                   fontSize: 15.toFont,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 children: [
                                   TextSpan(
-                                    text: TextStrings().homeWeWillSetupAccount,
+                                    text:
+                                        "TextStrings().homeWeWillSetupAccount",
                                     style: TextStyle(
                                       color: ColorConstants.fadedText,
                                       fontWeight: FontWeight.normal,
@@ -150,7 +141,7 @@ class _HomeState extends State<Home> {
                               alignment: Alignment.topRight,
                               child: CustomButton(
                                   buttonText: TextStrings().buttonStart,
-                                  onPressed: authenticating
+                                  onTap: authenticating
                                       ? () {}
                                       : () async {
                                           await _backendService

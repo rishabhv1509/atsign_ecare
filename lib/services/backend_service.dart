@@ -1,21 +1,22 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart' as path_provider;
+
+// ignore: implementation_imports
+import 'package:at_client/src/manager/sync_manager.dart';
+import 'package:at_client_mobile/at_client_mobile.dart';
+// import 'package:path_provider/path_provider.dart' as path_provider;
+
+import 'package:at_commons/at_commons.dart';
 import 'package:at_contacts_flutter/utils/init_contacts_service.dart';
 import 'package:at_lookup/at_lookup.dart';
 import 'package:at_onboarding_flutter/screens/onboarding_widget.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/utils/constants.dart';
-import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:at_client_mobile/at_client_mobile.dart';
 import 'package:flutter/services.dart';
-// import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:path_provider/path_provider.dart' as path_provider;
 
-import 'package:at_commons/at_commons.dart';
 import 'navigation_service.dart';
-// ignore: implementation_imports
-import 'package:at_client/src/manager/sync_manager.dart';
 
 class BackendService {
   static final BackendService _singleton = BackendService._internal();
@@ -308,7 +309,8 @@ class BackendService {
     AtKey key = AtKey();
     key.sharedBy = atSign;
     key.metadata = metadata;
-    List contactFields = TextStrings().contactFields;
+    List contactFields = [];
+    // List contactFields = TextStrings().contactFields;
 
     try {
       // firstname
@@ -379,7 +381,7 @@ class BackendService {
           // await onboard(atsign: atsign, atClientPreference: atClientPreference, atClientServiceInstance: );
           await Navigator.pushNamedAndRemoveUntil(
               NavService.navKey.currentContext,
-              Routes.WELCOME_SCREEN,
+              Routes.HOMESCREEN,
               (Route<dynamic> route) => false);
         },
         onError: (error) {

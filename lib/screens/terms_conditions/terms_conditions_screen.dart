@@ -1,9 +1,6 @@
-import 'package:atsign_ecare/screens/common_widgets/app_bar.dart';
-
-import 'package:atsign_ecare/utils/text_strings.dart';
-
-import 'package:flutter/material.dart';
 import 'package:atsign_ecare/services/size_config.dart';
+import 'package:atsign_ecare/widgets/custom_appbar.dart';
+import 'package:flutter/material.dart';
 
 class TermsConditions extends StatelessWidget {
   @override
@@ -11,7 +8,7 @@ class TermsConditions extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         showTitle: true,
-        title: TextStrings().termsAppBar,
+        title: "",
       ),
       // endDrawer: SideBarWidget(),
       body: SingleChildScrollView(
@@ -22,7 +19,7 @@ class TermsConditions extends StatelessWidget {
             Container(
               height: 723.toHeight,
               child: Text(
-                TextStrings().termsAndConditions,
+                "",
                 // style: CustomTextStyles.secondaryRegular14,
               ),
             )
