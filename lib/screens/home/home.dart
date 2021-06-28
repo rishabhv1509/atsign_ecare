@@ -1,21 +1,12 @@
-import 'dart:io';
-import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/common_widgets/custom_button.dart';
 import 'package:atsign_ecare/services/backend_service.dart';
-import 'package:atsign_ecare/services/navigation_service.dart';
 import 'package:atsign_ecare/services/size_config.dart';
 import 'package:atsign_ecare/utils/colors.dart';
-import 'package:atsign_ecare/utils/constants.dart';
 import 'package:atsign_ecare/utils/images.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
-import 'package:atsign_ecare/utils/text_styles.dart';
-
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:google_fonts/google_fonts.dart';
-import 'package:path/path.dart' show basename;
-import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 // import 'package:provider/provider.dart';
 // import 'package:receive_sharing_intent/receive_sharing_intent.dart';

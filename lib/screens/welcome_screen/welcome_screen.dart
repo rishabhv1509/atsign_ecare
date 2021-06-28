@@ -1,5 +1,5 @@
 import 'package:at_contacts_flutter/utils/init_contacts_service.dart';
-import 'package:atsign_ecare/controllers/add_doctors_controller.dart';
+import 'package:atsign_ecare/controllers/doctors_controller.dart';
 import 'package:atsign_ecare/controllers/contact_controller.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/common_widgets/app_bar.dart';
@@ -23,7 +23,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   void initState() {
     _backendService = BackendService.getInstance();
     ContactsController().initializeContactService();
-    DoctorsController().getDetails();
+    DoctorsController().getDoctorsDetails();
     super.initState();
   }
 

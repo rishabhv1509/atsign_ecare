@@ -19,7 +19,7 @@ class DoctorsController {
         .put(doctorsKey, jsonEncode(doctorTags));
   }
 
-  getDetails() async {
+  getDoctorsDetails() async {
     AtKey doctorsKey = AtKey()
       ..key = 'doctorDetails'
       ..metadata = Metadata();
