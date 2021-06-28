@@ -17,6 +17,8 @@ class Routes {
   static const String GROUPS = 'groups';
   static const String TERMS_CONDITIONS = 'termsConditions';
 
+  static const String SPLASHSCREEN = "/";
+  static const String SINGUPSCREEN = "/signup";
   static const String SIGNUPOTPVERIFICATION = '/signupotpverification';
   static const String LOGINOTPVERIFICATION = '/loginotpverification';
   static const String MYCONSULTATION = '/myconsultation';

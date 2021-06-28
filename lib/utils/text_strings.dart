@@ -3,7 +3,7 @@ class TextStrings {
   static TextStrings _instance = TextStrings._();
   factory TextStrings() => _instance;
 
-  String appName = 'E-Health Care';
+  String appName = 'AtSign E-Health';
   String tagLine = 'Search Specialist and Certified\nDoctors for your Family!';
   String noAccount = 'No account? ';
 //UserType
@@ -39,7 +39,7 @@ class TextStrings {
   String chooseDoctor = 'I am Doctor';
   String choosePatient = 'I am Patient';
   //SignupScreen Text
-  String signupTitle = 'Welcome to E-Health Care!';
+  String signupTitle = 'Welcome to AtSign E-Health!';
   String signupSubTitleText = 'Please fill out the form below to get started';
   String haveAccount = 'Have account? ';
   //OTPVerify Text

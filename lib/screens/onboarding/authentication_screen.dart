@@ -38,6 +38,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     void _showError(String error) async {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(error),

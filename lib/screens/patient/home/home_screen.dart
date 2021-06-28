@@ -3,10 +3,12 @@ import 'package:atsign_ecare/config/image_constants.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
+import 'package:atsign_ecare/widgets/carousel_sliders_item.dart';
 import 'package:atsign_ecare/widgets/category_card.dart';
 import 'package:atsign_ecare/widgets/custom_appbar.dart';
 import 'package:atsign_ecare/widgets/fab.dart';
 import 'package:atsign_ecare/widgets/space_box.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -92,21 +94,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   SpaceBox(20.toHeight),
-                  // Container(
-                  //   child: CarouselSlider.builder(
-                  //     itemCount: 3,
-                  //     itemBuilder: (BuildContext context, int index) {
-                  //       return CarouselSliderItem();
-                  //     },
-                  //     options: CarouselOptions(
-                  //         aspectRatio: 1.9,
-                  //         onPageChanged: (index, reason) {
-                  //           setState(() {
-                  //             _current = index;
-                  //           });
-                  //         }),
-                  //   ),
-                  // ),
+                  Container(
+                    child: CarouselSlider.builder(
+                      itemCount: 3,
+                      itemBuilder: (BuildContext context, int index, int x) {
+                        return CarouselSliderItem();
+                      },
+                      options: CarouselOptions(
+                          aspectRatio: 1.9,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              _current = index;
+                            });
+                          }),
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: imgList.map((string) {

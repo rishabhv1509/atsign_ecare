@@ -17,6 +17,7 @@ import 'package:atsign_ecare/screens/doctor/profile/editprofilescreen.dart';
 import 'package:atsign_ecare/screens/doctor/total_consultation/total_consultation_screen.dart';
 import 'package:atsign_ecare/screens/home/home.dart';
 import 'package:atsign_ecare/screens/onboarding/authentication_screen.dart';
+import 'package:atsign_ecare/screens/onboarding/signup_screen.dart';
 import 'package:atsign_ecare/screens/otp_verification.dart/otp_verification_login.dart';
 import 'package:atsign_ecare/screens/otp_verification.dart/otp_verification_signup.dart';
 import 'package:atsign_ecare/screens/patient/choose_doctor/book_appointment.dart';
@@ -37,14 +38,17 @@ import 'package:atsign_ecare/screens/patient/my_consultation/video_call/video_ca
 import 'package:atsign_ecare/screens/patient/specialities/gynecologist.dart';
 import 'package:atsign_ecare/screens/patient/specialities/specialities.dart';
 import 'package:atsign_ecare/screens/patient/symptoms/symptoms.dart';
+import 'package:atsign_ecare/screens/splash_screen.dart';
 import 'package:atsign_ecare/screens/welcome_screen/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class SetupRoutes {
-  static String initialRoute = Routes.HOMESCREEN;
+  static String initialRoute = Routes.SPLASHSCREEN;
 
   static Map<String, WidgetBuilder> get routes {
     return {
+      Routes.SPLASHSCREEN: (_) => SplashScreen(),
+      Routes.SINGUPSCREEN: (_) => SignUpForm(),
       Routes.HOME: (context) => Home(),
       Routes.WELCOME_SCREEN: (context) => WelcomeScreen(),
       Routes.PRIVATE_KEY_GEN_SCREEN: (context) => PrivateKeyQRCodeGenScreen(),
