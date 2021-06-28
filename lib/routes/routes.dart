@@ -1,8 +1,11 @@
 // import 'package:at_contacts_group_flutter/screens/group_contact_view/group_contact_view.dart';
+
+import 'package:at_contacts_flutter/screens/contacts_screen.dart';
 import 'package:at_onboarding_flutter/screens/private_key_qrcode_generator.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/home/home.dart';
 import 'package:atsign_ecare/screens/welcome_screen/welcome_screen.dart';
+import 'package:atsign_ecare/services/navigation_service.dart';
 
 import 'package:flutter/material.dart';
 
@@ -24,16 +27,14 @@ class SetupRoutes {
       //     ),
       // Routes.TERMS_CONDITIONS: (context) => TermsConditions(),
 
-      // Routes.CONTACT_SCREEN: (context) {
-      //   Map<String, dynamic> args =
-      //       ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
-      //   return GroupContactView(
-      //       asSelectionScreen: args['asSelectionScreen'],
-      //       singleSelection: args['singleSelection'],
-      //       showGroups: args['showGroups'],
-      //       showContacts: args['showContacts'],
-      //       selectedList: args['selectedList']);
-      // },
+      Routes.CONTACT_SCREEN: (context) {
+        Map<String, dynamic> args =
+            ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+        return ContactsScreen(
+            asSelectionScreen: args['asSelectionScreen'],
+            context: NavService.navKey.currentContext,
+            selectedList: args['selectedList']);
+      },
 
       Routes.PRIVATE_KEY_GEN_SCREEN: (context) => PrivateKeyQRCodeGenScreen(),
     };
