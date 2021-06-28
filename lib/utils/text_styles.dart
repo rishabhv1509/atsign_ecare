@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 
 class CustomTextStyle {
   static TextStyle appTitleStyle = TextStyle(
-      fontSize: 50.toFont,
-      fontWeight: FontWeight.w600,
+      fontSize: 56.toFont,
+      fontWeight: FontWeight.bold,
       color: ColorConstants.secondaryDarkAppColor);
   static TextStyle tagLineStyle = TextStyle(
-      fontSize: 36.toFont, color: ColorConstants.secondaryDarkAppColor);
+    fontSize: 38.toFont,
+    color: ColorConstants.secondaryDarkAppColor,
+    fontWeight: FontWeight.bold,
+  );
   static TextStyle customButtonTextStyle = TextStyle(
       fontWeight: FontWeight.w700,
       fontSize: 26.toFont,
