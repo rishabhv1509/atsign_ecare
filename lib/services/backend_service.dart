@@ -1,21 +1,24 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart' as path_provider;
-import 'package:at_contacts_flutter/utils/init_contacts_service.dart';
-import 'package:at_lookup/at_lookup.dart';
-import 'package:at_onboarding_flutter/screens/onboarding_widget.dart';
-import 'package:atsign_ecare/routes/route_names.dart';
-import 'package:atsign_ecare/utils/constants.dart';
-import 'package:atsign_ecare/utils/text_strings.dart';
-import 'package:flutter/material.dart';
+
+// ignore: implementation_imports
+import 'package:at_chat_flutter/at_chat_flutter.dart';
+import 'package:at_client/src/manager/sync_manager.dart';
 import 'package:at_client_mobile/at_client_mobile.dart';
-import 'package:flutter/services.dart';
 // import 'package:path_provider/path_provider.dart' as path_provider;
 
 import 'package:at_commons/at_commons.dart';
+import 'package:at_contacts_flutter/utils/init_contacts_service.dart';
+import 'package:at_lookup/at_lookup.dart';
+import 'package:at_onboarding_flutter/screens/onboarding_widget.dart';
+import 'package:atsign_ecare/controllers/initialization_controller.dart';
+import 'package:atsign_ecare/routes/route_names.dart';
+import 'package:atsign_ecare/utils/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
+
 import 'navigation_service.dart';
-// ignore: implementation_imports
-import 'package:at_client/src/manager/sync_manager.dart';
 
 class BackendService {
   static final BackendService _singleton = BackendService._internal();
@@ -159,6 +162,7 @@ class BackendService {
 
     atClientInstance.startMonitor(privateKey, _notificationCallBack);
     print('monitor started');
+
     return true;
   }
 
@@ -267,6 +271,7 @@ class BackendService {
           await atClientServiceMap[atSign].makeAtSignPrimary(atSign);
           await startMonitor(atsign: atsign, value: value);
           initializeContactsService(atClientInstance, currentAtSign);
+          initializeChatService(atClientInstance, currentAtSign);
           // await onboard(atsign: atsign, atClientPreference: atClientPreference, atClientServiceInstance: );
           await Navigator.pushNamedAndRemoveUntil(
               NavService.navKey.currentContext,
@@ -308,7 +313,8 @@ class BackendService {
     AtKey key = AtKey();
     key.sharedBy = atSign;
     key.metadata = metadata;
-    List contactFields = TextStrings().contactFields;
+    List contactFields = [];
+    // List contactFields = TextStrings().contactFields;
 
     try {
       // firstname
@@ -372,14 +378,15 @@ class BackendService {
 
           await atClientServiceMap[atSign].makeAtSignPrimary(atSign);
           await startMonitor(atsign: atsign, value: value);
-          _initBackendService();
-          initializeContactsService(atClientInstance, currentAtSign);
+
+          // _initBackendService();
+          // initializeContactsService(atClientInstance, currentAtSign);
           authenticating = false;
           isAuthuneticatingSink.add(authenticating);
           // await onboard(atsign: atsign, atClientPreference: atClientPreference, atClientServiceInstance: );
           await Navigator.pushNamedAndRemoveUntil(
               NavService.navKey.currentContext,
-              Routes.WELCOME_SCREEN,
+              Routes.HOMESCREEN,
               (Route<dynamic> route) => false);
         },
         onError: (error) {

@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  at_chat_flutter: ^1.0.2
   at_client_mobile: ^1.0.0+9
   at_common_flutter: ^1.0.0
   at_commons: ^1.0.1+6
@@ -30,23 +31,30 @@ dependencies:
   at_contacts_flutter: ^1.0.2
   at_lookup: ^1.0.0+6
   at_onboarding_flutter: ^1.0.0+4
+  cached_network_image: ^3.0.0
+  carousel_slider: ^4.0.0
   cupertino_icons: ^1.0.2
   flutter_riverpod: ^0.14.0+3
+  flutter_switch: ^0.3.2
   google_fonts: ^2.1.0
   http: ^0.13.3
+  image_picker: ^0.8.1+1
   path_provider: ^2.0.2
+  pin_entry_text_field: ^0.1.4
   qr_flutter: ^4.0.0
-  flutter_keychain: ^1.0.0
+  syncfusion_flutter_datepicker: ^19.1.69-beta
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+dependency_overrides:
+  flutter_keychain: ^2.0.1
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

@@ -1,8 +1,7 @@
-import 'package:atsign_ecare/screens/common_widgets/app_bar.dart';
+import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/colors.dart';
-import 'package:atsign_ecare/services/size_config.dart';
 import 'package:atsign_ecare/utils/faq_data.dart';
-import 'package:atsign_ecare/utils/text_strings.dart';
+import 'package:atsign_ecare/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class FaqsScreen extends StatelessWidget {
@@ -10,9 +9,8 @@ class FaqsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        showBackButton: true,
         showTitle: true,
-        title: TextStrings().faqs,
+        title: "FAQ",
       ),
       body: Container(
         margin:

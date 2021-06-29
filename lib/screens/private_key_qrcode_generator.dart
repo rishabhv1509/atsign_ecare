@@ -3,11 +3,10 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:atsign_ecare/routes/route_names.dart';
-import 'package:atsign_ecare/screens/common_widgets/custom_button.dart';
 import 'package:atsign_ecare/services/backend_service.dart';
-import 'package:atsign_ecare/services/size_config.dart';
+import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
-
+import 'package:atsign_ecare/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -152,7 +151,7 @@ class _PrivateKeyQRCodeGenScreenState extends State<PrivateKeyQRCodeGenScreen> {
                   CustomButton(
                     width: 230.toWidth,
                     buttonText: TextStrings().buttonSave,
-                    onPressed: () {
+                    onTap: () {
                       _captureAndSavePng();
                     },
                   ),
@@ -160,9 +159,8 @@ class _PrivateKeyQRCodeGenScreenState extends State<PrivateKeyQRCodeGenScreen> {
                     height: 30,
                   ),
                   CustomButton(
-                    isInverted: true,
                     buttonText: TextStrings().buttonContinue,
-                    onPressed: () async {
+                    onTap: () async {
                       await Navigator.pushNamed(context, Routes.WELCOME_SCREEN);
                     },
                   )
