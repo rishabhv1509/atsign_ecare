@@ -207,9 +207,9 @@ import 'color_constants.dart';
 final ThemeData themeData = new ThemeData(
   scaffoldBackgroundColor: hexToColor('#F9F9F9'), //lightScaffoldBackgroundColor
   colorScheme: ColorScheme.light(
-      secondary: hexToColor('#5E92F3'), //secondaryAppColor
+      secondary: hexToColor('#F05E3E'), //secondaryAppColor
       background: Colors.white, //secondaryDarkAppColor
-      primary: hexToColor('#38B5ED'), //logoBg
+      primary: hexToColor('#f57053'), //logoBg
       primaryVariant: hexToColor('#F2F2F2'), //fadedGrey
       secondaryVariant: hexToColor('#26315F') // headingText
       ),

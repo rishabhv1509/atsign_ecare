@@ -40,8 +40,34 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                 ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      margin:
+                          EdgeInsets.only(top: 70.toHeight, left: 30.toWidth),
+                      width: 90.toWidth,
+                      height: 90.toWidth,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: ColorConstants.unselectedBoxShadow,
+                              blurRadius: 10)
+                        ],
+                        color: themeData.colorScheme.background,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.chevron_left,
+                          color: themeData.colorScheme.primary,
+                        ),
+                      ),
+                    ),
+                  ),
                   InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, Routes.EDITDOCTORPROFILE);
@@ -61,7 +87,10 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Center(
-                        child: Image.asset(AllImages().edit),
+                        child: Image.asset(
+                          AllImages().edit,
+                          color: themeData.colorScheme.primary,
+                        ),
                       ),
                     ),
                   ),

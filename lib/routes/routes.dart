@@ -11,11 +11,13 @@ import 'package:atsign_ecare/screens/consultation/consultation.dart';
 import 'package:atsign_ecare/screens/consultation/consultation_four.dart';
 import 'package:atsign_ecare/screens/consultation/consultation_three.dart';
 import 'package:atsign_ecare/screens/consultation/consultation_two.dart';
+import 'package:atsign_ecare/screens/doctor/bookings/bookings.dart';
 import 'package:atsign_ecare/screens/doctor/home/doctor_home_screen.dart';
+import 'package:atsign_ecare/screens/doctor/message/chat.dart';
+import 'package:atsign_ecare/screens/doctor/message/patient_list.dart';
 import 'package:atsign_ecare/screens/doctor/profile/doctor_profile.dart';
 import 'package:atsign_ecare/screens/doctor/profile/editprofilescreen.dart';
 import 'package:atsign_ecare/screens/doctor/total_consultation/total_consultation_screen.dart';
-import 'package:atsign_ecare/screens/home/home.dart';
 import 'package:atsign_ecare/screens/onboarding/authentication_screen.dart';
 import 'package:atsign_ecare/screens/onboarding/signup_screen.dart';
 import 'package:atsign_ecare/screens/otp_verification.dart/otp_verification_login.dart';
@@ -41,24 +43,17 @@ import 'package:atsign_ecare/screens/patient/symptoms/symptoms.dart';
 import 'package:atsign_ecare/screens/splash_screen.dart';
 import 'package:atsign_ecare/screens/welcome_screen/welcome_screen.dart';
 import 'package:atsign_ecare/services/navigation_service.dart';
-
 import 'package:flutter/material.dart';
 
 class SetupRoutes {
-  static String initialRoute = Routes.HOME;
+  static String initialRoute = Routes.DOCTORHOME;
 
   static Map<String, WidgetBuilder> get routes {
     return {
-      Routes.HOME: (context) => Home(),
-      Routes.SPLASHSCREEN: (_) => SplashScreen(),
-      Routes.SINGUPSCREEN: (_) => SignUpForm(),
       Routes.WELCOME_SCREEN: (context) => WelcomeScreen(),
-      // Routes.FAQ_SCREEN: (context) => WebsiteScreen(
-      //       title: 'FAQ',
-      //       url: '${MixedConstants.WEBSITE_URL}/faqs',
-      //     ),
-      // Routes.TERMS_CONDITIONS: (context) => TermsConditions(),
-
+      Routes.WELCOMESCREEN: (_) => WelcomeScreen(),
+      Routes.SPLASHSCREEN: (_) => SplashScreen(),
+      Routes.SIGNUPSCREEN: (_) => SignUpForm(),
       Routes.CONTACT_SCREEN: (context) {
         Map<String, dynamic> args =
             ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
@@ -67,21 +62,18 @@ class SetupRoutes {
             context: NavService.navKey.currentContext,
             selectedList: args['selectedList']);
       },
-
       Routes.PRIVATE_KEY_GEN_SCREEN: (context) => PrivateKeyQRCodeGenScreen(),
-      Routes.SIGNUPOTPVERIFICATION: (_) => SignUpOtpVerification(),
       Routes.LOGINOTPVERIFICATION: (_) => LoginOtpVerification(),
-      Routes.MYCONSULTATION: (context) => MyConsultation(),
-      Routes.WELCOMESCREEN: (_) => WelcomeScreen(),
+      Routes.SIGNUPOTPVERIFICATION: (_) => SignUpOtpVerification(),
+
+      // Patient Routes
       Routes.HOMESCREEN: (_) => HomeScreen(),
-      Routes.DOCTORHOME: (_) => DoctorHomeScreen(),
+      Routes.MYCONSULTATION: (context) => MyConsultation(),
       Routes.CONSULTATION: (_) => Consultation(),
       Routes.CONSULTATIONTWO: (_) => ConsultationTwo(),
       Routes.CONSULTATIONTHREE: (_) => ConsultationThree(),
       Routes.CONSULTATIONFOUR: (_) => ConsultationFour(),
       Routes.CHOOSEDOCTOR: (_) => ChooseDoctor(),
-      Routes.DOCTORPROFILESCREEN: (_) => DoctorProfileScreen(),
-      Routes.EDITDOCTORPROFILE: (_) => EditDoctorProfile(),
       Routes.DOCTORPROFILE: (_) => DoctorProfile(
             specialistImage: AllImages().specialistImage,
             specialistName: 'Robert Kilm',
@@ -115,7 +107,15 @@ class SetupRoutes {
       Routes.BOOKDIAGNOSTICCENTER: (_) => BookDiagnosticCenter(),
       Routes.DIAGNOSTICCONFIRMBOOKING: (_) => DiagnosticConfirmBooking(),
       Routes.AUTH: (_) => AuthenticationScreen(),
+
+      // Doctor Routes
+      Routes.DOCTORHOME: (_) => DoctorHomeScreen(),
+      Routes.DOCTORPROFILESCREEN: (_) => DoctorProfileScreen(),
+      Routes.EDITDOCTORPROFILE: (_) => EditDoctorProfile(),
       Routes.TOTALCONSULTATION: (_) => TotalConsulationScreen(),
+      Routes.DOCTORCHAT: (_) => DoctorChat(),
+      Routes.PATIENTLIST: (_) => PatientList(),
+      Routes.BOOKINGS: (_) => Bookings(),
     };
   }
 }

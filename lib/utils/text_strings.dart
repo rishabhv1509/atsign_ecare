@@ -3,6 +3,9 @@ class TextStrings {
   static TextStrings _instance = TextStrings._();
   factory TextStrings() => _instance;
 
+  String patiens = "Patients";
+  String bookings = "Bookings";
+
   String appName = 'AtSign E-Health';
   String tagLine = 'Search Specialist and Certified\nDoctors for your Family!';
   String noAccount = 'No account? ';

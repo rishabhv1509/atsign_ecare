@@ -7,6 +7,7 @@ import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/widgets/carousel_sliders_item.dart';
 import 'package:atsign_ecare/widgets/category_card.dart';
+import 'package:atsign_ecare/widgets/custom_appbar.dart';
 import 'package:atsign_ecare/widgets/space_box.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,15 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
     SizeConfig().init(context);
 
     return Scaffold(
+      appBar: CustomAppBar(
+        elevation: 2,
+        showLeadingicon: false,
+        title: TextStrings().buttonExplore,
+        showTitle: true,
+        trailingButtonAction: () {
+          Navigator.pushNamed(context, Routes.CONSULTATION);
+        },
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -47,12 +57,16 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                     Row(
                       children: <Widget>[
                         CategoryCard(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, Routes.BOOKINGS);
+                          },
                           cardIcon: AllImages().booking,
                           cardTitle: TextStrings().booking,
                         ),
                         CategoryCard(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, Routes.PATIENTLIST);
+                          },
                           cardIcon: AllImages().messages,
                           cardTitle: TextStrings().message,
                         )
@@ -71,11 +85,14 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                         CategoryCard(
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => DoctorProfileScreen(
-                                        phoneNumber: widget.phoneNumber,
-                                        userType: widget.userType)));
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => DoctorProfileScreen(
+                                  phoneNumber: widget.phoneNumber,
+                                  userType: widget.userType,
+                                ),
+                              ),
+                            );
                           },
                           cardIcon: AllImages().profile,
                           cardTitle: TextStrings().profile,
