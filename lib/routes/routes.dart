@@ -19,7 +19,10 @@ import 'package:atsign_ecare/screens/doctor/profile/doctor_profile.dart';
 import 'package:atsign_ecare/screens/doctor/profile/editprofilescreen.dart';
 import 'package:atsign_ecare/screens/doctor/total_consultation/total_consultation_screen.dart';
 import 'package:atsign_ecare/screens/onboarding/authentication_screen.dart';
-import 'package:atsign_ecare/screens/onboarding/signup_screen.dart';
+import 'package:atsign_ecare/screens/onboarding/signup_doctor.dart';
+import 'package:atsign_ecare/screens/onboarding/signup_doctor_three.dart';
+import 'package:atsign_ecare/screens/onboarding/signup_doctor_two.dart';
+import 'package:atsign_ecare/screens/onboarding/signup_patient.dart';
 import 'package:atsign_ecare/screens/otp_verification.dart/otp_verification_login.dart';
 import 'package:atsign_ecare/screens/otp_verification.dart/otp_verification_signup.dart';
 import 'package:atsign_ecare/screens/patient/choose_doctor/book_appointment.dart';
@@ -46,14 +49,18 @@ import 'package:atsign_ecare/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 class SetupRoutes {
-  static String initialRoute = Routes.DOCTORHOME;
+  static String initialRoute = Routes.SIGNUPSCREEN;
 
   static Map<String, WidgetBuilder> get routes {
     return {
       Routes.WELCOME_SCREEN: (context) => WelcomeScreen(),
       Routes.WELCOMESCREEN: (_) => WelcomeScreen(),
       Routes.SPLASHSCREEN: (_) => SplashScreen(),
-      Routes.SIGNUPSCREEN: (_) => SignUpForm(),
+      Routes.SIGNUPSCREEN: (_) => AuthenticationScreen(),
+      Routes.SIGNUPSCREENPATIENT: (_) => SignUpScreenPatient(),
+      Routes.SIGNUPSCREENDOCTOR: (_) => SignUpScreenDoctor(),
+      Routes.SIGNUPSCREENDOCTORTWO: (_) => SignUpScreenDoctorTwo(),
+      Routes.SIGNUPSCREENDOCTORTHREE: (_) => SignUpScreenDoctorThree(),
       Routes.CONTACT_SCREEN: (context) {
         Map<String, dynamic> args =
             ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
@@ -106,7 +113,6 @@ class SetupRoutes {
       Routes.DIAGNOSTICCENTER: (_) => DiagnosticCenter(),
       Routes.BOOKDIAGNOSTICCENTER: (_) => BookDiagnosticCenter(),
       Routes.DIAGNOSTICCONFIRMBOOKING: (_) => DiagnosticConfirmBooking(),
-      Routes.AUTH: (_) => AuthenticationScreen(),
 
       // Doctor Routes
       Routes.DOCTORHOME: (_) => DoctorHomeScreen(),

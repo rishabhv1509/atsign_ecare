@@ -1,5 +1,9 @@
 //It validates different input fields
 class Validators {
+  String validateString(String value) {
+    return null;
+  }
+
   String validateName(String value) {
     if (value.isEmpty) return "Name is required.";
     final String trimmedUserName = value.trim();
@@ -60,8 +64,10 @@ class Validators {
   String validatePassword(String value) {
     if (value.isEmpty) return "Please choose a password.";
     String trimmedPassword = value.trim();
-    if (trimmedPassword.length < 6) return "Password must be atleast 6 characters long.";
-    if (trimmedPassword.length > 20) return "Password must be atmost 30 characters long.";
+    if (trimmedPassword.length < 6)
+      return "Password must be atleast 6 characters long.";
+    if (trimmedPassword.length > 20)
+      return "Password must be atmost 30 characters long.";
     return null;
   }
 

@@ -19,6 +19,7 @@ class Routes {
 
   static const String SPLASHSCREEN = "/";
   static const String SIGNUPSCREEN = "/signup";
+  static const String SIGNUPSCREENDOCTOR = "/signupdoctor";
   static const String SIGNUPOTPVERIFICATION = '/signupotpverification';
   static const String LOGINOTPVERIFICATION = '/loginotpverification';
   static const String MYCONSULTATION = '/myconsultation';
@@ -58,4 +59,7 @@ class Routes {
   static const String DOCTORCHAT = '/doctorchat';
   static const String PATIENTLIST = '/patientlist';
   static const String BOOKINGS = '/bookings';
+  static const String SIGNUPSCREENDOCTORTWO = '/signupdoctortwo';
+  static const String SIGNUPSCREENDOCTORTHREE = '/signupdoctorthree';
+  static const String SIGNUPSCREENPATIENT = '/signuppatient';
 }

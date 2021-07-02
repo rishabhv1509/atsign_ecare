@@ -247,7 +247,7 @@ packages:
     source: hosted
     version: "6.1.2"
   file_picker:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: file_picker
       url: "https://pub.dartlang.org"
@@ -629,7 +629,7 @@ packages:
       name: syncfusion_flutter_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "19.1.69"
+    version: "19.2.44+1"
   syncfusion_flutter_datepicker:
     dependency: "direct main"
     description:
@@ -637,6 +637,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "19.1.69-beta"
+  syncfusion_flutter_sliders:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_sliders
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "19.2.44"
   synchronized:
     dependency: transitive
     description:

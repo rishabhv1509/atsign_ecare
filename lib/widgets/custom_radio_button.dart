@@ -32,8 +32,8 @@ class CustomRadioButtonState extends State<CustomRadioButton> {
           child: Card(
               color: Colors.white,
               child: Container(
-                height: 168.toHeight,
-                width: 168.toWidth,
+                height: 300.toHeight,
+                width: 300.toWidth,
                 alignment: Alignment.center,
                 margin: new EdgeInsets.all(5.0),
                 child: Column(
@@ -42,8 +42,8 @@ class CustomRadioButtonState extends State<CustomRadioButton> {
                   children: <Widget>[
                     Image.asset(
                       widget.category.assetImage,
-                      width: 66.toWidth,
-                      height: 75.toHeight,
+                      width: 100.toWidth,
+                      height: 132.toHeight,
                     ),
                     SizedBox(height: 10),
                     Text(
@@ -53,6 +53,7 @@ class CustomRadioButtonState extends State<CustomRadioButton> {
                         fontWeight: widget.category.isSelected
                             ? FontWeight.w700
                             : FontWeight.w400,
+                        fontSize: 30.toFont,
                       ),
                     )
                   ],
