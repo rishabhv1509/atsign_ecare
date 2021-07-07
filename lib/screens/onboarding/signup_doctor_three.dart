@@ -184,7 +184,7 @@ class _SignUpScreenDoctorThreeState extends State<SignUpScreenDoctorThree> {
                     buttonText: TextStrings().buttonSubmit,
                     onTap: () {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          Routes.HOMESCREEN, (Route<dynamic> route) => false);
+                          Routes.DOCTORHOME, (Route<dynamic> route) => false);
                     },
                   ),
                 )

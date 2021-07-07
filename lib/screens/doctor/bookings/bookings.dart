@@ -1,5 +1,6 @@
 import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
+import 'package:atsign_ecare/screens/doctor/bookings/booking_item.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/upcoming_consultation.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
@@ -67,7 +68,7 @@ class _BookingsState extends State<Bookings>
               itemCount: 2,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
-                return UpcomingConsultation(
+                return BookingItem(
                   bookedLabel: true,
                 );
               },
