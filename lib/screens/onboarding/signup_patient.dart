@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:atsign_ecare/config/color_constants.dart';
-import 'package:atsign_ecare/config/image_constants.dart';
+import 'package:atsign_ecare/config/theme_data.dart';
 import 'package:atsign_ecare/config/validators.dart';
-import 'package:atsign_ecare/data/category.dart';
+import 'package:atsign_ecare/models/patient.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
+import 'package:atsign_ecare/services/shared_preferences_service.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
@@ -11,6 +14,7 @@ import 'package:atsign_ecare/widgets/custom_padding.dart';
 import 'package:atsign_ecare/widgets/custom_textformfield.dart';
 import 'package:atsign_ecare/widgets/space_box.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SignUpScreenPatient extends StatefulWidget {
   @override
@@ -20,16 +24,12 @@ class SignUpScreenPatient extends StatefulWidget {
 class _SignUpScreenPatientState extends State<SignUpScreenPatient> {
   bool showLoginForm = false;
   bool showLoginWithEmail = false;
-  List<Category> category = [];
   // ignore: close_sinks
 
   String userType;
+  String selectedGender = "";
   @override
   void initState() {
-    category.add(new Category(TextStrings().chooseDoctor,
-        AllImages().doctorIcon, false, TextStrings().userTypeDoctor));
-    category.add(new Category(TextStrings().choosePatient,
-        AllImages().patientIcon, false, TextStrings().userTypePatient));
     super.initState();
   }
 
@@ -37,6 +37,7 @@ class _SignUpScreenPatientState extends State<SignUpScreenPatient> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  dynamic _age = 1.0;
 
   GlobalKey<FormState> _formkey = new GlobalKey<FormState>();
   Validators validators = Validators();
@@ -126,6 +127,55 @@ class _SignUpScreenPatientState extends State<SignUpScreenPatient> {
                                       prefixIcon: Icons.mail_outline,
                                       validator: validators.validateSignupEmail,
                                     ),
+                                    SpaceBox(80.toHeight),
+                                    Text(
+                                      "Age ${_age == 0.0 ? "" : "- " + _age.toInt().toString()}",
+                                      style: TextStyle(
+                                        fontSize: 26.toFont,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SpaceBox(20.toHeight),
+                                    SfSlider(
+                                      min: 0.0,
+                                      max: 100.0,
+                                      value: _age,
+                                      interval: 20,
+                                      showTicks: true,
+                                      showLabels: true,
+                                      enableTooltip: true,
+                                      activeColor: ColorConstants.logoBg,
+                                      inactiveColor: ColorConstants.boxShadow,
+                                      minorTicksPerInterval: 1,
+                                      stepSize: 1.0,
+                                      onChanged: (dynamic value) {
+                                        setState(() {
+                                          _age = value;
+                                        });
+                                      },
+                                    ),
+                                    SpaceBox(80.toHeight),
+                                    Text(
+                                      "Gender",
+                                      style: TextStyle(
+                                        fontSize: 26.toFont,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SpaceBox(20.toHeight),
+                                    customChip(
+                                      chipText: [
+                                        'Male',
+                                        'Female',
+                                        'Other',
+                                      ],
+                                      selected: selectedGender,
+                                      onTap: (String itemName) {
+                                        selectedGender = itemName;
+
+                                        setState(() {});
+                                      },
+                                    ),
                                   ],
                                 ),
                               ),
@@ -133,11 +183,29 @@ class _SignUpScreenPatientState extends State<SignUpScreenPatient> {
                         Spacer(),
                         CustomButton(
                             buttonText: "SUBMIT",
-                            onTap: () {
-                              Navigator.pushNamed(
-                                context,
-                                Routes.HOMESCREEN,
-                              );
+                            onTap: () async {
+                              if (selectedGender == "") {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  errorAlert("Please select gender"),
+                                );
+                              } else {
+                                await SharedPreferenceService.setData(
+                                  SharedPrefConstant.PatientData,
+                                  json.encode(
+                                    Patient(
+                                      age: _age.toString(),
+                                      email: _emailController.text,
+                                      gender: selectedGender,
+                                      name: _nameController.text,
+                                      phoneNumber: _phoneNumberController.text,
+                                    ).toJson(),
+                                  ),
+                                );
+                                Navigator.pushNamed(
+                                  context,
+                                  Routes.HOMESCREEN,
+                                );
+                              }
                             })
                       ],
                     ),
@@ -152,6 +220,51 @@ class _SignUpScreenPatientState extends State<SignUpScreenPatient> {
     );
   }
 
+  Widget contentPadding({Widget child}) {
+    return CustomPadding(
+      top: 40.0.toHeight,
+      left: 50.0.toWidth,
+      right: 50.toWidth,
+      child: child,
+    );
+  }
+
+  Widget customChip({
+    List<String> chipText,
+    String selected,
+    Function onTap,
+  }) {
+    return Container(
+      width: SizeConfig().screenWidth,
+      height: 80.toHeight,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: chipText.length,
+        itemBuilder: (BuildContext context, int index) {
+          bool select = selected == chipText[index];
+          print("select $select");
+          return Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: 10.toWidth, vertical: 10.toHeight),
+              child: GestureDetector(
+                onTap: () {
+                  onTap(chipText[index]);
+                },
+                child: Chip(
+                  label: Text(chipText[index]),
+                  labelStyle: !select
+                      ? CustomTextStyle.subTitleStyle
+                      : CustomTextStyle.customButtonTextStyle,
+                  backgroundColor: !select
+                      ? Color(0xffF7F9FD)
+                      : themeData.colorScheme.primary,
+                ),
+              ));
+        },
+      ),
+    );
+  }
+
   Widget rowStart(List<Widget> child) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -159,20 +272,16 @@ class _SignUpScreenPatientState extends State<SignUpScreenPatient> {
     );
   }
 
-  Widget errorAlert() {
+  SnackBar errorAlert(message) {
     return SnackBar(
-      duration: Duration(seconds: 10),
+      duration: Duration(seconds: 3),
       elevation: 10.toHeight,
-      backgroundColor: ColorConstants.secondaryDarkAppColor,
       content: Text(
-        'Phone Number already exists',
-        style: TextStyle(color: ColorConstants.logoBg),
-      ),
-      action: SnackBarAction(
-        label: 'Login',
-        onPressed: () {
-          _formkey.currentState.reset();
-        },
+        message,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 19,
+        ),
       ),
     );
   }

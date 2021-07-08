@@ -3,6 +3,10 @@ class AllImages {
   static AllImages _instance = AllImages._();
   factory AllImages() => _instance;
 
+  String ai = "assets/images/ai.png";
+  String camera = "assets/images/camera.png";
+  String prescriptionAlt = "assets/images/prescriptionAlt.png";
+  String gallery = "assets/images/gallery.png";
   String backgroundImage = 'assets/images/doctor.png';
   String booking = 'assets/images/booking.png';
   String messages = 'assets/images/messages.png';
@@ -23,7 +27,8 @@ class AllImages {
   String patientIcon = 'assets/images/patientIcon.png';
   String logo = 'assets/images/logo.png';
   String ecareLogo = 'assets/images/ecare_logo.png';
-  String kDefaultImage = 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png';
+  String kDefaultImage =
+      'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png';
   String deleteButton = 'assets/images/deleteButton.png';
   String cardIcon = 'assets/images/cardIcon.png';
   String videoCallDoctor = 'assets/images/video_call_doctor.png';

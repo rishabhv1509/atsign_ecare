@@ -62,4 +62,8 @@ class Routes {
   static const String SIGNUPSCREENDOCTORTWO = '/signupdoctortwo';
   static const String SIGNUPSCREENDOCTORTHREE = '/signupdoctorthree';
   static const String SIGNUPSCREENPATIENT = '/signuppatient';
+  static const String AIANALYSISSCREEN = '/aianalysis';
+  static const String AIANALYSISSCREENRESULT = '/aianalysisresult';
+  static const String MYPRESCRIPTIONS = '/myprescriptions';
+  static const String MYPRESCRIPTIONSDETAILS = '/myprescriptionsdetails';
 }

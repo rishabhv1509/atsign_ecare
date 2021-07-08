@@ -25,6 +25,8 @@ import 'package:atsign_ecare/screens/onboarding/signup_doctor_two.dart';
 import 'package:atsign_ecare/screens/onboarding/signup_patient.dart';
 import 'package:atsign_ecare/screens/otp_verification.dart/otp_verification_login.dart';
 import 'package:atsign_ecare/screens/otp_verification.dart/otp_verification_signup.dart';
+import 'package:atsign_ecare/screens/patient/ai_analysis/ai_analysis.dart';
+import 'package:atsign_ecare/screens/patient/ai_analysis/ai_analysis_result.dart';
 import 'package:atsign_ecare/screens/patient/choose_doctor/book_appointment.dart';
 import 'package:atsign_ecare/screens/patient/choose_doctor/choose_doctor.dart';
 import 'package:atsign_ecare/screens/patient/choose_doctor/doctor_profile.dart';
@@ -40,6 +42,7 @@ import 'package:atsign_ecare/screens/patient/my_consultation/chat/chat.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/feedback.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/myconsultation.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/video_call/video_call.dart';
+import 'package:atsign_ecare/screens/patient/my_prescriptions/my_prescriptions.dart';
 import 'package:atsign_ecare/screens/patient/specialities/gynecologist.dart';
 import 'package:atsign_ecare/screens/patient/specialities/specialities.dart';
 import 'package:atsign_ecare/screens/patient/symptoms/symptoms.dart';
@@ -49,7 +52,7 @@ import 'package:atsign_ecare/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 class SetupRoutes {
-  static String initialRoute = Routes.SIGNUPSCREEN;
+  static String initialRoute = Routes.HOMESCREEN;
 
   static Map<String, WidgetBuilder> get routes {
     return {
@@ -75,6 +78,13 @@ class SetupRoutes {
 
       // Patient Routes
       Routes.HOMESCREEN: (_) => HomeScreen(),
+      Routes.AIANALYSISSCREEN: (_) => AiAnalysisScreen(),
+      Routes.AIANALYSISSCREENRESULT: (context) {
+        Map<String, dynamic> args =
+            ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+        return AiAnalysisResultScreen(data: args['data']);
+      },
+      Routes.MYPRESCRIPTIONS: (_) => MyPrescriptions(),
       Routes.MYCONSULTATION: (context) => MyConsultation(),
       Routes.CONSULTATION: (_) => Consultation(),
       Routes.CONSULTATIONTWO: (_) => ConsultationTwo(),
