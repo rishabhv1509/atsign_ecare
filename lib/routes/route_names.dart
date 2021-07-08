@@ -66,4 +66,5 @@ class Routes {
   static const String AIANALYSISSCREENRESULT = '/aianalysisresult';
   static const String MYPRESCRIPTIONS = '/myprescriptions';
   static const String MYPRESCRIPTIONSDETAILS = '/myprescriptionsdetails';
+  static const String SEARCHRESULT = '/searchresult';
 }

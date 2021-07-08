@@ -11,6 +11,7 @@ class CustomTextFormField extends StatefulWidget {
   final String Function(String) validator;
   bool obsecureText;
   final bool showSuffixIcon;
+  final bool showPrefixIcon;
   CustomTextFormField(
       {this.prefixIcon,
       this.hintText,
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatefulWidget {
       this.controller,
       this.validator,
       this.showSuffixIcon,
+      this.showPrefixIcon = true,
       this.obsecureText});
   @override
   _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
@@ -32,37 +34,38 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
-          suffixIcon: widget.showSuffixIcon ?? false
-              ? IconButton(
-                  icon: Icon(
-                    widget.obsecureText
-                        ? Icons.visibility_off
-                        : Icons.visibility,
-                    color: ColorConstants.greyIconColor,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      widget.obsecureText = !widget.obsecureText;
-                    });
-                  })
-              : SizedBox(),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: themeData.colorScheme.primary,
-            ),
+        suffixIcon: widget.showSuffixIcon ?? false
+            ? IconButton(
+                icon: Icon(
+                  widget.obsecureText ? Icons.visibility_off : Icons.visibility,
+                  color: ColorConstants.greyIconColor,
+                ),
+                onPressed: () {
+                  setState(() {
+                    widget.obsecureText = !widget.obsecureText;
+                  });
+                })
+            : SizedBox(),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: themeData.colorScheme.primary,
           ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: ColorConstants.unselectedBoxShadow,
-              width: 2.0,
-            ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: ColorConstants.unselectedBoxShadow,
+            width: 2.0,
           ),
-          prefixIcon: Icon(
-            widget.prefixIcon,
-            color: ColorConstants.greyIconColor,
-          ),
-          hintText: widget.hintText,
-          hintStyle: CustomTextStyle.loginTextfieldStyle),
+        ),
+        prefixIcon: widget.showPrefixIcon
+            ? Icon(
+                widget.prefixIcon,
+                color: ColorConstants.greyIconColor,
+              )
+            : null,
+        hintText: widget.hintText,
+        hintStyle: CustomTextStyle.loginTextfieldStyle,
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:atsign_ecare/config/color_constants.dart';
+import 'package:atsign_ecare/models/doctor.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
@@ -6,19 +7,8 @@ import 'package:atsign_ecare/widgets/custom_padding.dart';
 import 'package:flutter/material.dart';
 
 class DoctorCard extends StatefulWidget {
-  final String specialistImage;
-  final String specialistName;
-  final String specialistDesignation;
-  final String specialistDescription;
-  final String specialistRating;
-  final String specialistCharge;
-  DoctorCard(
-      {this.specialistImage,
-      this.specialistName,
-      this.specialistDesignation,
-      this.specialistDescription,
-      this.specialistRating,
-      this.specialistCharge});
+  final Doctor doctor;
+  DoctorCard({this.doctor});
   @override
   _DoctorCardState createState() => _DoctorCardState();
 }
@@ -29,7 +19,8 @@ class _DoctorCardState extends State<DoctorCard> {
     SizeConfig().init(context);
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, Routes.DOCTORPROFILE);
+        Navigator.pushNamed(context, Routes.DOCTORPROFILE,
+            arguments: {"doctor": widget.doctor});
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -40,114 +31,83 @@ class _DoctorCardState extends State<DoctorCard> {
         color: ColorConstants.secondaryDarkAppColor,
         child: Row(
           children: <Widget>[
-            Container(
-              width: 300.toWidth,
-              height: 250.toHeight,
-              decoration: BoxDecoration(
+            Expanded(
+              flex: 2,
+              child: Container(
+                height: 250.toHeight,
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                      image: AssetImage(widget.specialistImage),
-                      fit: BoxFit.cover)),
-            ),
-            Container(
-              width: SizeConfig().screenWidth - 210,
-              height: 250.toHeight,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                      image: NetworkImage(widget.doctor.profileImagePath),
+                      fit: BoxFit.cover),
+                ),
               ),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      CustomPadding(
-                        top: 20,
-                        child: Text(
-                          widget.specialistName,
-                          style: CustomTextStyle.appBarTitleStyle,
-                        ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Container(
+                height: 250.toHeight,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    CustomPadding(
+                      top: 20,
+                      left: 5,
+                      right: 5,
+                      child: Text(
+                        widget.doctor.name,
+                        style: CustomTextStyle.appBarTitleStyle,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      CustomPadding(
-                        top: 8,
-                        child: Text(
-                          widget.specialistDesignation,
-                          style: CustomTextStyle.subTitleStyle,
-                        ),
+                    ),
+                    CustomPadding(
+                      top: 8,
+                      left: 5,
+                      right: 5,
+                      child: Text(
+                        widget.doctor.speciality,
+                        style: CustomTextStyle.subTitleStyle,
                       ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      CustomPadding(
+                    ),
+                    Flexible(
+                      child: CustomPadding(
                         top: 8,
+                        left: 5,
+                        right: 5,
                         child: Text(
-                          widget.specialistDescription,
+                          widget.doctor.profileDetails,
                           style: CustomTextStyle.grey26,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
                         ),
                       ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 10.toHeight),
-                        width: 90.toWidth,
-                        height: 47.toHeight,
-                        decoration: BoxDecoration(
-                          color: ColorConstants.logoBg,
-                          borderRadius: BorderRadius.circular(23.5),
-                        ),
-                        child: Center(
-                          child: Text(
-                            widget.specialistCharge,
-                            style: CustomTextStyle.whiteBold26,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 10.toHeight),
+                          padding: EdgeInsets.symmetric(horizontal: 10.toWidth),
+                          height: 47.toHeight,
+                          decoration: BoxDecoration(
+                            color: ColorConstants.logoBg,
+                            borderRadius: BorderRadius.circular(23.5),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "\$${widget.doctor.pricePerHour.toInt()} / hour",
+                              style: CustomTextStyle.whiteBold26,
+                            ),
                           ),
                         ),
-                      ),
-                      CustomPadding(
-                        top: 10,
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.star_rounded,
-                              size: 35.toFont,
-                              color: ColorConstants.starColor,
-                            ),
-                            Icon(
-                              Icons.star_rounded,
-                              size: 35.toFont,
-                              color: ColorConstants.starColor,
-                            ),
-                            Icon(
-                              Icons.star_rounded,
-                              size: 35.toFont,
-                              color: ColorConstants.starColor,
-                            ),
-                            Icon(
-                              Icons.star_rounded,
-                              size: 35.toFont,
-                              color: ColorConstants.grey,
-                            ),
-                            CustomPadding(
-                              left: 20.toWidth,
-                              child: Text(
-                                widget.specialistRating,
-                                style: CustomTextStyle.ratingStyle,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             )
           ],

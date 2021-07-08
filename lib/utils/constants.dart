@@ -94,4 +94,89 @@ class MixedConstants {
       ),
     )
   ];
+
+  static List<Doctor> doctors = [
+    Doctor(
+      name: "Dr. Justin Bax",
+      hospital: "Shalby Hospital",
+      address: "3147 Broadway Avenue",
+      phoneNumber: "989-620-1859",
+      email: "damr.loka2@mservices.life",
+      speciality: "Gynocologist",
+      profileImagePath: "https://randomuser.me/api/portraits/men/43.jpg",
+      profileDetails:
+          "As the asteroid hurtled toward earth, Becky was upset her dentist appointment had been canceled.",
+      pricePerHour: 200,
+    ),
+    Doctor(
+      name: "Dr. John Wick",
+      hospital: "Enlarge Hospital",
+      address: "332 Dye Street",
+      phoneNumber: "989-710-9022",
+      email: "2chri@greendike.com",
+      speciality: "Physician",
+      profileImagePath: "https://randomuser.me/api/portraits/men/32.jpg",
+      profileDetails:
+          "A suit of armor provides excellent sun protection on hot days.",
+      pricePerHour: 150,
+    ),
+    Doctor(
+      name: "Dr. Kathy M Waugh",
+      hospital: "Diagram Hospital",
+      address: "2877 Green Street",
+      phoneNumber: "318-623-9812",
+      email: "fjean.fedelho.187@monsait.com",
+      speciality: "Orthopedician",
+      profileImagePath: "https://randomuser.me/api/portraits/women/80.jpg",
+      profileDetails:
+          "The gruff old man sat in the back of the bait shop grumbling to himself as he scooped out a handful of worms.",
+      pricePerHour: 300,
+    ),
+    Doctor(
+      name: "Dr. Anita J Barton",
+      hospital: "Reserve Hospital",
+      address: "3680 Wyatt Street",
+      phoneNumber: "318-392-9282",
+      email: "3dhionathanm7@btcmod.com",
+      speciality: "Dietitian",
+      profileImagePath: "https://randomuser.me/api/portraits/men/37.jpg",
+      profileDetails:
+          "He decided water-skiing on a frozen lake wasn’t a good idea.",
+      pricePerHour: 179,
+    ),
+    Doctor(
+      name: "Dr. Jessica H Johns",
+      hospital: "Fantasy Hospital",
+      address: "4175 Layman Avenue",
+      phoneNumber: "410-303-4022",
+      email: "1ammar.has@googl.win",
+      speciality: "Children's Health",
+      profileImagePath: "https://randomuser.me/api/portraits/women/26.jpg",
+      profileDetails: "",
+      pricePerHour: 220,
+    ),
+    Doctor(
+      name: "Dr. Elsie L Shook",
+      hospital: "Recruit Hospital",
+      address: "1611 Burwell Heights Road",
+      phoneNumber: "443-553-1132",
+      email: "4hamidlkawtariq@freeallapp.com",
+      speciality: "Skin & hair",
+      profileImagePath: "https://randomuser.me/api/portraits/men/80.jpg",
+      profileDetails: "The bird had a belief that it was really a groundhog.",
+      pricePerHour: 500,
+    ),
+    Doctor(
+      name: "Dr. Clark B Jackson",
+      hospital: "Despair Hospital",
+      address: "1245 Ritter Street",
+      phoneNumber: "256-295-1204",
+      email: "ghay@tirtalayana.com",
+      speciality: "Mental Wellness",
+      profileImagePath: "https://randomuser.me/api/portraits/women/47.jpg",
+      profileDetails:
+          "It turns out you don't need all that stuff you insisted you did.",
+      pricePerHour: 99,
+    ),
+  ];
 }

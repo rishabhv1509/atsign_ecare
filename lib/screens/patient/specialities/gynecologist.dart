@@ -1,7 +1,7 @@
 import 'package:atsign_ecare/config/color_constants.dart';
-import 'package:atsign_ecare/config/image_constants.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/patient/choose_doctor/widgets/choose_doctor_card.dart';
+import 'package:atsign_ecare/utils/constants.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
@@ -68,13 +68,7 @@ class _GynecologistState extends State<Gynecologist> {
               itemCount: 20,
               itemBuilder: (BuildContext context, int index) {
                 return DoctorCard(
-                  specialistImage: AllImages().specialistImage,
-                  specialistName: 'Robert Kilm',
-                  specialistDesignation: 'MD, Neurology',
-                  specialistDescription:
-                      'Experienced leader in\ntreatment of neuromuscular',
-                  specialistCharge: '\$230',
-                  specialistRating: '3.0',
+                  doctor: MixedConstants.doctors[0],
                 );
               },
             ),

@@ -1,6 +1,5 @@
 import 'package:at_contacts_flutter/screens/contacts_screen.dart';
 import 'package:at_onboarding_flutter/screens/private_key_qrcode_generator.dart';
-import 'package:atsign_ecare/config/image_constants.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/account/account_screen.dart';
 import 'package:atsign_ecare/screens/account/booking_history.dart';
@@ -38,6 +37,7 @@ import 'package:atsign_ecare/screens/patient/health_checkup/diagnostic_center.da
 import 'package:atsign_ecare/screens/patient/health_checkup/diagnostic_confirm_booking.dart';
 import 'package:atsign_ecare/screens/patient/health_checkup/health_checkup.dart';
 import 'package:atsign_ecare/screens/patient/home/home_screen.dart';
+import 'package:atsign_ecare/screens/patient/home/search_result.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/chat/chat.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/feedback.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/myconsultation.dart';
@@ -87,19 +87,20 @@ class SetupRoutes {
       Routes.MYPRESCRIPTIONS: (_) => MyPrescriptions(),
       Routes.MYCONSULTATION: (context) => MyConsultation(),
       Routes.CONSULTATION: (_) => Consultation(),
+      Routes.SEARCHRESULT: (context) {
+        Map<String, dynamic> args =
+            ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+        return SearchResult(searchString: args['searchString']);
+      },
       Routes.CONSULTATIONTWO: (_) => ConsultationTwo(),
       Routes.CONSULTATIONTHREE: (_) => ConsultationThree(),
       Routes.CONSULTATIONFOUR: (_) => ConsultationFour(),
       Routes.CHOOSEDOCTOR: (_) => ChooseDoctor(),
-      Routes.DOCTORPROFILE: (_) => DoctorProfile(
-            specialistImage: AllImages().specialistImage,
-            specialistName: 'Robert Kilm',
-            specialistDesignation: 'MD, Neurology',
-            specialistDescription:
-                'Experienced leader in\ntreatment of neuromuscular',
-            specialistCharge: '\$230',
-            specialistRating: '3.0',
-          ),
+      Routes.DOCTORPROFILE: (context) {
+        Map<String, dynamic> args =
+            ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+        return DoctorProfile(doctor: args['doctor']);
+      },
       Routes.BOOKAPPOINTMENT: (_) => BookAppointment(),
       Routes.SYMPTOMS: (_) => Symptoms(),
       Routes.MAKEPAYMENTS: (_) => MakePayment(),

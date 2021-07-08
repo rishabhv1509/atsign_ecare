@@ -1,5 +1,5 @@
 import 'package:atsign_ecare/config/color_constants.dart';
-import 'package:atsign_ecare/config/image_constants.dart';
+import 'package:atsign_ecare/models/doctor.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
@@ -11,19 +11,8 @@ import 'package:atsign_ecare/widgets/space_box.dart';
 import 'package:flutter/material.dart';
 
 class DoctorProfile extends StatefulWidget {
-  final String specialistImage;
-  final String specialistName;
-  final String specialistDesignation;
-  final String specialistDescription;
-  final String specialistRating;
-  final String specialistCharge;
-  DoctorProfile(
-      {this.specialistImage,
-      this.specialistName,
-      this.specialistDesignation,
-      this.specialistDescription,
-      this.specialistRating,
-      this.specialistCharge});
+  final Doctor doctor;
+  DoctorProfile({@required this.doctor});
   @override
   _DoctorProfileState createState() => _DoctorProfileState();
 }
@@ -65,149 +54,85 @@ class _DoctorProfileState extends State<DoctorProfile>
             color: ColorConstants.secondaryDarkAppColor,
             child: Row(
               children: <Widget>[
-                Container(
-                  width: 220.toWidth,
-                  height: 450.toHeight,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(AllImages().doctorProfile),
-                        fit: BoxFit.cover),
-                    borderRadius: BorderRadius.circular(10),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    width: 220.toWidth,
+                    height: 450.toHeight,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(widget.doctor.profileImagePath),
+                          fit: BoxFit.cover),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 20.toWidth),
-                  width: SizeConfig().screenWidth - 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CustomPadding(
-                            top: 50,
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    margin: EdgeInsets.only(left: 20.toWidth),
+                    width: SizeConfig().screenWidth - 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        CustomPadding(
+                          top: 50,
+                          child: Text(
+                            widget.doctor.name,
+                            style: CustomTextStyle.appBarTitleStyle,
+                          ),
+                        ),
+                        CustomPadding(
+                          top: 10,
+                          child: Text(
+                            widget.doctor.speciality,
+                            style: CustomTextStyle.subTitleStyle,
+                          ),
+                        ),
+                        CustomPadding(
+                          top: 10,
+                          child: Text(
+                            widget.doctor.profileDetails,
+                            style: CustomTextStyle.grey26,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 15.toHeight),
+                          width: 250.toWidth,
+                          height: 54.toHeight,
+                          decoration: BoxDecoration(
+                            color: ColorConstants.logoBg,
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: Center(
                             child: Text(
-                              widget.specialistName,
-                              style: CustomTextStyle.appBarTitleStyle,
+                              '\$${widget.doctor.pricePerHour.toInt()} / per hour',
+                              style: CustomTextStyle.whiteBold26,
                             ),
                           ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CustomPadding(
-                            top: 10,
-                            child: Text(
-                              widget.specialistDesignation,
-                              style: CustomTextStyle.subTitleStyle,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CustomPadding(
-                            top: 10,
-                            child: Text(
-                              widget.specialistDescription,
-                              style: CustomTextStyle.grey26,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(top: 15.toHeight),
-                            width: 250.toWidth,
-                            height: 54.toHeight,
-                            decoration: BoxDecoration(
-                              color: ColorConstants.logoBg,
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            child: Center(
-                              child: Text(
-                                '\$230 / per hour',
-                                style: CustomTextStyle.whiteBold26,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      IntrinsicHeight(
-                        child: Row(
+                        ),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomPadding(
-                              top: 15,
+                              top: 25,
                               child: Row(
                                 children: [
-                                  Icon(
-                                    Icons.star_rounded,
-                                    size: 35.toFont,
-                                    color: ColorConstants.starColor,
-                                  ),
-                                  Icon(
-                                    Icons.star_rounded,
-                                    size: 35.toFont,
-                                    color: ColorConstants.starColor,
-                                  ),
-                                  Icon(
-                                    Icons.star_rounded,
-                                    size: 35.toFont,
-                                    color: ColorConstants.starColor,
-                                  ),
-                                  Icon(
-                                    Icons.star_rounded,
-                                    size: 35.toFont,
-                                    color: ColorConstants.grey,
-                                  ),
-                                  CustomPadding(
-                                    left: 20.toWidth,
-                                    child: Text(
-                                      widget.specialistRating,
-                                      style: CustomTextStyle.ratingStyle,
-                                    ),
-                                  ),
-                                  CustomPadding(
-                                      left: 20.toWidth,
-                                      child: VerticalDivider(
-                                        color: ColorConstants.grey,
-                                      )),
-                                  CustomPadding(
-                                    left: 20.toWidth,
-                                    child: Text(
-                                      '284 Reviews',
-                                      style: CustomTextStyle.reviewStyle,
-                                    ),
-                                  ),
+                                  customContact(Icons.messenger, () {}),
+                                  customContact(Icons.phone, () {}),
+                                  customContact(Icons.location_on, () {}),
                                 ],
                               ),
                             ),
                           ],
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomPadding(
-                            top: 25,
-                            child: Row(
-                              children: [
-                                customContact(Icons.messenger, () {}),
-                                customContact(Icons.phone, () {}),
-                                customContact(Icons.location_on, () {}),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 )
               ],

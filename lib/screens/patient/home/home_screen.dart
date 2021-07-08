@@ -10,6 +10,7 @@ import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/widgets/carousel_sliders_item.dart';
 import 'package:atsign_ecare/widgets/category_card.dart';
 import 'package:atsign_ecare/widgets/custom_appbar.dart';
+import 'package:atsign_ecare/widgets/custom_textformfield.dart';
 import 'package:atsign_ecare/widgets/fab.dart';
 import 'package:atsign_ecare/widgets/space_box.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -24,6 +25,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  TextEditingController _searchCtrl = TextEditingController();
   int _current;
   final List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -76,6 +78,45 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Column(
                   children: <Widget>[
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: CustomTextFormField(
+                              showPrefixIcon: false,
+                              controller: _searchCtrl,
+                              keyboardType: TextInputType.text,
+                              hintText: "Search Doctor",
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                              Routes.SEARCHRESULT,
+                              arguments: {"searchString": _searchCtrl.text},
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: ColorConstants.logoBg,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 14,
+                            ),
+                            child: Icon(
+                              Icons.search,
+                              size: 32,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SpaceBox(50.toHeight),
                     Row(
                       children: <Widget>[
                         CategoryCard(
