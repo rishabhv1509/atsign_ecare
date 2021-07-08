@@ -65,7 +65,7 @@ class TextStrings {
   String genderQuestion = 'What is your Gender?';
   String symptomsQuestion = 'What is your Symptoms?';
   String questions = 'Questions';
-  String section = '1 on 4';
+  String section = '1 of 4';
   //My Consultation Text
   String myConsultation = 'My Consultation';
   String upcoming = 'Upcoming';
@@ -168,7 +168,7 @@ class TextStrings {
   String awesome = 'Awesome!';
   String bookingConfirmed =
       'Your Booking has been confirmed.\nPlease check your details';
-  String bookingScheduled = 'Your booking is scheduled with Dr. Robert Kilm';
+  String bookingScheduled = 'Your booking is scheduled with';
   String viewScheduled = 'View Scheduled';
   //booking history
   String recentBooking = 'Recent Booking';

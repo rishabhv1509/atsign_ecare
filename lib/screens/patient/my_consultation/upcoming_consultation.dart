@@ -1,6 +1,6 @@
 import 'package:at_chat_flutter/utils/init_chat_service.dart';
 import 'package:atsign_ecare/config/color_constants.dart';
-import 'package:atsign_ecare/config/image_constants.dart';
+import 'package:atsign_ecare/models/consultation.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/services/backend_service.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
@@ -11,11 +11,13 @@ import 'package:flutter/material.dart';
 class UpcomingConsultation extends StatefulWidget {
   final bool bookedLabel;
   final bool showContantIcons;
+  final Consultation consultation;
 
   const UpcomingConsultation({
     Key key,
     this.bookedLabel = false,
     this.showContantIcons = true,
+    this.consultation,
   }) : super(key: key);
 
   @override
@@ -56,8 +58,8 @@ class _UpcomingConsultationState extends State<UpcomingConsultation> {
                         backgroundColor: ColorConstants.logoBg,
                         child: CircleAvatar(
                           radius: 70.toWidth,
-                          backgroundImage:
-                              AssetImage(AllImages().videoCallDoctor),
+                          backgroundImage: NetworkImage(
+                              widget.consultation.doctor.profileImagePath),
                         ),
                       ),
                     ),
@@ -107,7 +109,7 @@ class _UpcomingConsultationState extends State<UpcomingConsultation> {
                           CustomPadding(
                             top: 50,
                             child: Text(
-                              'Robert Kilm',
+                              widget.consultation.doctor.name,
                               style: CustomTextStyle.appBarTitleStyle,
                             ),
                           ),
@@ -119,7 +121,7 @@ class _UpcomingConsultationState extends State<UpcomingConsultation> {
                           CustomPadding(
                             top: 10,
                             child: Text(
-                              'MD, Neurology',
+                              widget.consultation.doctor.speciality,
                               style: CustomTextStyle.subTitleStyle,
                             ),
                           ),
@@ -139,7 +141,7 @@ class _UpcomingConsultationState extends State<UpcomingConsultation> {
                             top: 20,
                             left: 20,
                             child: Text(
-                              '25 September 2020',
+                              "${widget.consultation.date.day < 9 ? "0" + widget.consultation.date.day.toString() : widget.consultation.date.day} ${getMonth(widget.consultation.date.month)} ${widget.consultation.date.year}",
                               style: CustomTextStyle.paymentProfileCard,
                             ),
                           ),
@@ -159,7 +161,7 @@ class _UpcomingConsultationState extends State<UpcomingConsultation> {
                             top: 20,
                             left: 20,
                             child: Text(
-                              '03:00 PM  -  04 PM ',
+                              widget.consultation.timeSlot,
                               style: CustomTextStyle.paymentProfileCard,
                             ),
                           ),
@@ -211,5 +213,23 @@ class _UpcomingConsultationState extends State<UpcomingConsultation> {
         color: ColorConstants.logoBg,
       )),
     );
+  }
+
+  String getMonth(i) {
+    List<String> months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
+    return months[i + 1];
   }
 }

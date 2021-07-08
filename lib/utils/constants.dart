@@ -102,11 +102,18 @@ class MixedConstants {
       address: "3147 Broadway Avenue",
       phoneNumber: "989-620-1859",
       email: "damr.loka2@mservices.life",
-      speciality: "Gynocologist",
+      speciality: "Gynecologist",
       profileImagePath: "https://randomuser.me/api/portraits/men/43.jpg",
       profileDetails:
           "As the asteroid hurtled toward earth, Becky was upset her dentist appointment had been canceled.",
       pricePerHour: 200,
+      timeSlots: [
+        "10 AM - 11 AM",
+        "11 AM - 12 PM",
+        "12 PM - 1 PM",
+        "3 PM - 4 PM",
+        "4 PM - 5 PM"
+      ],
     ),
     Doctor(
       name: "Dr. John Wick",
@@ -119,6 +126,13 @@ class MixedConstants {
       profileDetails:
           "A suit of armor provides excellent sun protection on hot days.",
       pricePerHour: 150,
+      timeSlots: [
+        "10 AM - 11 AM",
+        "11 AM - 12 PM",
+        "12 PM - 1 PM",
+        "3 PM - 4 PM",
+        "4 PM - 5 PM"
+      ],
     ),
     Doctor(
       name: "Dr. Kathy M Waugh",
@@ -131,6 +145,13 @@ class MixedConstants {
       profileDetails:
           "The gruff old man sat in the back of the bait shop grumbling to himself as he scooped out a handful of worms.",
       pricePerHour: 300,
+      timeSlots: [
+        "10 AM - 11 AM",
+        "11 AM - 12 PM",
+        "12 PM - 1 PM",
+        "3 PM - 4 PM",
+        "4 PM - 5 PM"
+      ],
     ),
     Doctor(
       name: "Dr. Anita J Barton",
@@ -143,6 +164,13 @@ class MixedConstants {
       profileDetails:
           "He decided water-skiing on a frozen lake wasn’t a good idea.",
       pricePerHour: 179,
+      timeSlots: [
+        "10 AM - 11 AM",
+        "11 AM - 12 PM",
+        "12 PM - 1 PM",
+        "3 PM - 4 PM",
+        "4 PM - 5 PM"
+      ],
     ),
     Doctor(
       name: "Dr. Jessica H Johns",
@@ -150,10 +178,17 @@ class MixedConstants {
       address: "4175 Layman Avenue",
       phoneNumber: "410-303-4022",
       email: "1ammar.has@googl.win",
-      speciality: "Children's Health",
+      speciality: "Children's health",
       profileImagePath: "https://randomuser.me/api/portraits/women/26.jpg",
       profileDetails: "",
       pricePerHour: 220,
+      timeSlots: [
+        "10 AM - 11 AM",
+        "11 AM - 12 PM",
+        "12 PM - 1 PM",
+        "3 PM - 4 PM",
+        "4 PM - 5 PM"
+      ],
     ),
     Doctor(
       name: "Dr. Elsie L Shook",
@@ -161,10 +196,17 @@ class MixedConstants {
       address: "1611 Burwell Heights Road",
       phoneNumber: "443-553-1132",
       email: "4hamidlkawtariq@freeallapp.com",
-      speciality: "Skin & hair",
+      speciality: "Skin & Hair",
       profileImagePath: "https://randomuser.me/api/portraits/men/80.jpg",
       profileDetails: "The bird had a belief that it was really a groundhog.",
       pricePerHour: 500,
+      timeSlots: [
+        "10 AM - 11 AM",
+        "11 AM - 12 PM",
+        "12 PM - 1 PM",
+        "3 PM - 4 PM",
+        "4 PM - 5 PM"
+      ],
     ),
     Doctor(
       name: "Dr. Clark B Jackson",
@@ -177,6 +219,13 @@ class MixedConstants {
       profileDetails:
           "It turns out you don't need all that stuff you insisted you did.",
       pricePerHour: 99,
+      timeSlots: [
+        "10 AM - 11 AM",
+        "11 AM - 12 PM",
+        "12 PM - 1 PM",
+        "3 PM - 4 PM",
+        "4 PM - 5 PM"
+      ],
     ),
   ];
 }

@@ -40,31 +40,34 @@ class _CustomNavButtonState extends State<CustomNavButton> {
               ]),
           child: SizedBox.expand(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: widget.prevButton == null
+                  ? MainAxisAlignment.end
+                  : MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                CustomPadding(
-                  left: 30,
-                  child: InkWell(
-                    onTap: widget.prevButton,
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.arrow_back,
-                          size: 35.toFont,
-                          color: ColorConstants.secondaryDarkAppColor,
-                        ),
-                        CustomPadding(
-                          left: 20,
-                          child: Text(
-                            TextStrings().buttonBack,
-                            style: CustomTextStyle.white26,
+                if (widget.prevButton != null)
+                  CustomPadding(
+                    left: 30,
+                    child: InkWell(
+                      onTap: widget.prevButton,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_back,
+                            size: 35.toFont,
+                            color: ColorConstants.secondaryDarkAppColor,
                           ),
-                        )
-                      ],
+                          CustomPadding(
+                            left: 20,
+                            child: Text(
+                              TextStrings().buttonBack,
+                              style: CustomTextStyle.white26,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ),
                 InkWell(
                   onTap: widget.nextButton,
                   child: Container(

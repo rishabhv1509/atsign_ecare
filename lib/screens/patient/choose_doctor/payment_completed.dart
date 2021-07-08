@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:atsign_ecare/config/color_constants.dart';
+import 'package:atsign_ecare/models/consultation.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
+import 'package:atsign_ecare/services/shared_preferences_service.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
@@ -9,6 +13,10 @@ import 'package:atsign_ecare/widgets/space_box.dart';
 import 'package:flutter/material.dart';
 
 class PaymentCompleted extends StatefulWidget {
+  final Consultation consultation;
+
+  const PaymentCompleted({Key key, @required this.consultation})
+      : super(key: key);
   @override
   _PaymentCompletedState createState() => _PaymentCompletedState();
 }
@@ -52,7 +60,7 @@ class _PaymentCompletedState extends State<PaymentCompleted> {
                 children: <TextSpan>[
                   TextSpan(text: TextStrings().bookingScheduled),
                   TextSpan(
-                      text: '\tDr. Robert Klim',
+                      text: '\t${widget.consultation.doctor.name}',
                       style: new TextStyle(fontWeight: FontWeight.bold)),
                 ],
               ),
@@ -72,7 +80,7 @@ class _PaymentCompletedState extends State<PaymentCompleted> {
               top: 20,
               left: 20,
               child: Text(
-                '25 September 2020',
+                "${widget.consultation.date.day < 9 ? "0" + widget.consultation.date.day.toString() : widget.consultation.date.day} ${getMonth(widget.consultation.date.month)} ${widget.consultation.date.year}",
                 style: CustomTextStyle.paymentProfileCard,
               ),
             )
@@ -90,15 +98,27 @@ class _PaymentCompletedState extends State<PaymentCompleted> {
               top: 20,
               left: 20,
               child: Text(
-                '03:00 PM  -  04 PM ',
+                widget.consultation.timeSlot,
                 style: CustomTextStyle.paymentProfileCard,
               ),
             )
           ]),
           SpaceBox(300),
           CustomButton(
-            buttonText: TextStrings().viewScheduled,
-            onTap: () {
+            buttonText: "View Schedules",
+            onTap: () async {
+              String rawData = await SharedPreferenceService.getData(
+                  SharedPrefConstant.Consultation);
+              List<dynamic> prevConsultations = [];
+              if (rawData == "") {
+                prevConsultations.add(widget.consultation.toJson());
+              } else {
+                prevConsultations = jsonDecode(rawData);
+                prevConsultations.insert(0, widget.consultation.toJson());
+              }
+              await SharedPreferenceService.setData(
+                  SharedPrefConstant.Consultation,
+                  jsonEncode(prevConsultations));
               Navigator.pushNamed(context, Routes.HOMESCREEN);
             },
           ),
@@ -113,5 +133,23 @@ class _PaymentCompletedState extends State<PaymentCompleted> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: child,
     );
+  }
+
+  String getMonth(i) {
+    List<String> months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
+    return months[i + 1];
   }
 }

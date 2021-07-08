@@ -101,12 +101,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: ColorConstants.logoBg,
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 14,
-                              vertical: 14,
-                            ),
+                            padding: EdgeInsets.all(10),
                             child: Icon(
                               Icons.search,
                               size: 32,
@@ -131,29 +128,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         CategoryCard(
                           onTap: () {
-                            Navigator.pushNamed(context, Routes.SYMPTOMS);
-                          },
-                          cardIcon: AllImages().symptomsIcon,
-                          cardTitle: TextStrings().symptoms,
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        CategoryCard(
-                          onTap: () {
                             Navigator.pushNamed(context, Routes.SPECIALITIES);
                           },
                           cardIcon: AllImages().specialistIcon,
                           cardTitle: TextStrings().specialities,
                         ),
-                        CategoryCard(
-                          onTap: () {
-                            Navigator.pushNamed(context, Routes.HEALTHCHECKUP);
-                          },
-                          cardIcon: AllImages().checkupIcon,
-                          cardTitle: TextStrings().checkup,
-                        )
                       ],
                     ),
                     Row(

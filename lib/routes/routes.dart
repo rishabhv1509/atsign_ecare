@@ -43,7 +43,7 @@ import 'package:atsign_ecare/screens/patient/my_consultation/feedback.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/myconsultation.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/video_call/video_call.dart';
 import 'package:atsign_ecare/screens/patient/my_prescriptions/my_prescriptions.dart';
-import 'package:atsign_ecare/screens/patient/specialities/gynecologist.dart';
+import 'package:atsign_ecare/screens/patient/specialities/doctors_list.dart';
 import 'package:atsign_ecare/screens/patient/specialities/specialities.dart';
 import 'package:atsign_ecare/screens/patient/symptoms/symptoms.dart';
 import 'package:atsign_ecare/screens/splash_screen.dart';
@@ -101,11 +101,27 @@ class SetupRoutes {
             ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
         return DoctorProfile(doctor: args['doctor']);
       },
-      Routes.BOOKAPPOINTMENT: (_) => BookAppointment(),
+      Routes.BOOKAPPOINTMENT: (context) {
+        Map<String, dynamic> args =
+            ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+        return BookAppointment(doctor: args['doctor']);
+      },
       Routes.SYMPTOMS: (_) => Symptoms(),
-      Routes.MAKEPAYMENTS: (_) => MakePayment(),
-      Routes.PAYMENT: (_) => Payment(),
-      Routes.PAYMENTCOMPLETED: (_) => PaymentCompleted(),
+      Routes.MAKEPAYMENTS: (context) {
+        Map<String, dynamic> args =
+            ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+        return MakePayment(consultation: args['consultation']);
+      },
+      Routes.PAYMENT: (context) {
+        Map<String, dynamic> args =
+            ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+        return Payment(consultation: args['consultation']);
+      },
+      Routes.PAYMENTCOMPLETED: (context) {
+        Map<String, dynamic> args =
+            ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+        return PaymentCompleted(consultation: args['consultation']);
+      },
       Routes.PROfILE: (_) => AccountScreen(),
       Routes.BOOKINGHISTORY: (_) => BookingHistory(),
       Routes.REPORTS: (_) => Reports(),
@@ -120,7 +136,11 @@ class SetupRoutes {
       Routes.FEEDBACK: (_) => FeedbackScreen(),
       Routes.HEALTHCHECKUP: (_) => HealthCheckup(),
       Routes.SPECIALITIES: (_) => Specialities(),
-      Routes.GYNOCOLOGIST: (_) => Gynecologist(),
+      Routes.DOCTORSLIST: (context) {
+        Map<String, dynamic> args =
+            ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+        return DoctorsList(speciality: args['speciality']);
+      },
       Routes.DIAGNOSTICCENTER: (_) => DiagnosticCenter(),
       Routes.BOOKDIAGNOSTICCENTER: (_) => BookDiagnosticCenter(),
       Routes.DIAGNOSTICCONFIRMBOOKING: (_) => DiagnosticConfirmBooking(),

@@ -50,7 +50,7 @@ class Routes {
   static const String HEALTHCHECKUP = '/healthcheckup';
   static const String FEEDBACK = '/feedback';
   static const String SPECIALITIES = '/specialities';
-  static const String GYNOCOLOGIST = '/gynecologist';
+  static const String DOCTORSLIST = '/doctorslist';
   static const String DIAGNOSTICCENTER = '/diagnosticcenter';
   static const String BOOKDIAGNOSTICCENTER = '/bookdiagnosticcenter';
   static const String DIAGNOSTICCONFIRMBOOKING = '/diagnosticconfirmbooking';

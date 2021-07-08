@@ -15,7 +15,8 @@ class ConsultationThree extends StatefulWidget {
 }
 
 class _ConsultationThreeState extends State<ConsultationThree> {
-  double _currentSliderValue = 80;
+  double _currentSliderValue = 3;
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,7 @@ class _ConsultationThreeState extends State<ConsultationThree> {
                       style: CustomTextStyle.questionTitle,
                     ),
                     Text(
-                      TextStrings().section,
+                      "3 of 4",
                       style: CustomTextStyle.questionTitle,
                     ),
                   ],
@@ -74,7 +75,7 @@ class _ConsultationThreeState extends State<ConsultationThree> {
               child: Slider(
                 value: _currentSliderValue,
                 min: 0,
-                max: 100,
+                max: 4,
                 divisions: 4,
                 onChanged: (double value) {
                   setState(() {
@@ -101,21 +102,53 @@ class _ConsultationThreeState extends State<ConsultationThree> {
                     height: 600.toHeight,
                     child: Column(
                       children: <Widget>[
-                        QuestionTextFormField(
-                          optionText: TextStrings().male,
-                          showSubTitle: false,
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = 0;
+                            });
+                          },
+                          child: QuestionTextFormField(
+                            optionText: TextStrings().male,
+                            showSubTitle: false,
+                            isSelected: selectedIndex == 0,
+                          ),
                         ),
-                        QuestionTextFormField(
-                          optionText: TextStrings().female,
-                          showSubTitle: false,
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = 1;
+                            });
+                          },
+                          child: QuestionTextFormField(
+                            optionText: TextStrings().female,
+                            showSubTitle: false,
+                            isSelected: selectedIndex == 1,
+                          ),
                         ),
-                        QuestionTextFormField(
-                          optionText: TextStrings().boys,
-                          showSubTitle: false,
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = 2;
+                            });
+                          },
+                          child: QuestionTextFormField(
+                            optionText: TextStrings().boys,
+                            showSubTitle: false,
+                            isSelected: selectedIndex == 2,
+                          ),
                         ),
-                        QuestionTextFormField(
-                          optionText: TextStrings().girls,
-                          showSubTitle: false,
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = 3;
+                            });
+                          },
+                          child: QuestionTextFormField(
+                            optionText: TextStrings().girls,
+                            showSubTitle: false,
+                            isSelected: selectedIndex == 3,
+                          ),
                         ),
                       ],
                     ),

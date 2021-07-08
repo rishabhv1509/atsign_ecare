@@ -203,7 +203,11 @@ class _DoctorProfileState extends State<DoctorProfile>
             width: 600.toWidth,
             buttonText: TextStrings().bookAppointment,
             onTap: () {
-              Navigator.pushNamed(context, Routes.BOOKAPPOINTMENT);
+              Navigator.pushNamed(
+                context,
+                Routes.BOOKAPPOINTMENT,
+                arguments: {"doctor": widget.doctor},
+              );
             },
           ),
         ],

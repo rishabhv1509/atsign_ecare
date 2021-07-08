@@ -1,8 +1,11 @@
-import 'package:at_chat_flutter/at_chat_flutter.dart';
+import 'dart:convert';
+
 import 'package:atsign_ecare/config/color_constants.dart';
+import 'package:atsign_ecare/models/consultation.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/past_consultation.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/upcoming_consultation.dart';
+import 'package:atsign_ecare/services/shared_preferences_service.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
@@ -19,11 +22,23 @@ class _MyConsultationState extends State<MyConsultation>
     with SingleTickerProviderStateMixin {
   TabController _controller;
   int _currentIndex = 0;
+  List<Consultation> myConsultations = [];
   @override
   void initState() {
     _controller =
         TabController(length: 2, vsync: this, initialIndex: _currentIndex);
     super.initState();
+    getConsultations();
+  }
+
+  getConsultations() async {
+    String rawData =
+        await SharedPreferenceService.getData(SharedPrefConstant.Consultation);
+    List<dynamic> prevConsultations = jsonDecode(rawData);
+    prevConsultations.forEach((data) {
+      myConsultations.add(Consultation.fromJson(data));
+    });
+    setState(() {});
   }
 
   @override
@@ -147,9 +162,11 @@ class _MyConsultationState extends State<MyConsultation>
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   ListView.builder(
-                      itemCount: 1,
+                      itemCount: myConsultations.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return UpcomingConsultation();
+                        return UpcomingConsultation(
+                          consultation: myConsultations[index],
+                        );
                       }),
                   PastConsultation(),
                 ]),

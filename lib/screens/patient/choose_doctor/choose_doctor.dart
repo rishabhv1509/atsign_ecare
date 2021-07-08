@@ -22,9 +22,11 @@ class _ChooseDoctorState extends State<ChooseDoctor> {
     return Scaffold(
       backgroundColor: ColorConstants.secondaryDarkAppColor,
       floatingActionButton: FabButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: CustomAppBar(
-        leadingIcon: Icons.search,
+        leadingIcon: Icons.arrow_back_ios_outlined,
+        leadingButtonAction: () {
+          Navigator.of(context).pop();
+        },
         elevation: 2,
         showLeadingicon: true,
         trailingButtonAction: () {
@@ -53,20 +55,21 @@ class _ChooseDoctorState extends State<ChooseDoctor> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  TextStrings().noofDoctors,
+                  "${MixedConstants.doctors.length} available",
                   style: CustomTextStyle.questionTitle,
                 ),
               ],
             ),
           ),
-          Container(
-            width: SizeConfig().screenWidth,
-            height: SizeConfig().screenHeight - 300,
-            child: ListView.builder(
-              itemCount: 20,
-              itemBuilder: (BuildContext context, int index) {
-                return DoctorCard(doctor: MixedConstants.doctors[0]);
-              },
+          Expanded(
+            child: Container(
+              width: SizeConfig().screenWidth,
+              child: ListView.builder(
+                itemCount: MixedConstants.doctors.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return DoctorCard(doctor: MixedConstants.doctors[index]);
+                },
+              ),
             ),
           )
         ],

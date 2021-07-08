@@ -15,7 +15,7 @@ class Doctor {
   final String profileImagePath;
   final String profileDetails;
   final List<String> daySlots;
-  final List<String> timeSlote;
+  final List<dynamic> timeSlots;
   final double pricePerHour;
   final String address;
   final String hospital;
@@ -32,7 +32,7 @@ class Doctor {
     this.profileImagePath,
     this.profileDetails,
     this.daySlots,
-    this.timeSlote,
+    this.timeSlots,
     this.pricePerHour,
     this.address,
     this.hospital,
@@ -53,7 +53,7 @@ class Doctor {
         "profileImagePath": profileImagePath,
         "profileDetails": profileDetails,
         "daySlots": daySlots,
-        "timeSlote": timeSlote,
+        "timeSlots": timeSlots,
         "pricePerHour": pricePerHour,
         "address": address,
         "hospital": hospital,
@@ -74,7 +74,7 @@ class Doctor {
         profileImagePath = json['profileImagePath'],
         profileDetails = json['profileDetails'],
         daySlots = json['daySlots'],
-        timeSlote = json['timeSlote'],
+        timeSlots = json['timeSlots'],
         pricePerHour = json['pricePerHour'],
         address = json['address'],
         hospital = json['hospital'],

@@ -1,5 +1,5 @@
 import 'package:atsign_ecare/config/color_constants.dart';
-import 'package:atsign_ecare/config/image_constants.dart';
+import 'package:atsign_ecare/models/consultation.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
@@ -11,6 +11,9 @@ import 'package:atsign_ecare/widgets/space_box.dart';
 import 'package:flutter/material.dart';
 
 class MakePayment extends StatefulWidget {
+  final Consultation consultation;
+
+  const MakePayment({Key key, @required this.consultation}) : super(key: key);
   @override
   _MakePaymentState createState() => _MakePaymentState();
 }
@@ -44,27 +47,15 @@ class _MakePaymentState extends State<MakePayment> {
                 backgroundColor: ColorConstants.logoBg,
                 child: CircleAvatar(
                   radius: 95.toWidth,
-                  backgroundImage: AssetImage(AllImages().videoCallDoctor),
+                  backgroundImage:
+                      NetworkImage(widget.consultation.doctor.profileImagePath),
                 ),
               )
-              // Container(
-              //   width: 250.toWidth,
-              //   height: 250.toHeight,
-              //   decoration: BoxDecoration(
-              //       image: DecorationImage(
-              //           image: AssetImage(
-              //             AllImages().doctorIcon,
-              //           ),
-              //           fit: BoxFit.cover),
-              //       borderRadius: BorderRadius.circular(100),
-              //       border: Border.all(color: ColorConstants.logoBg, width: 3),
-              //       color: ColorConstants.secondaryDarkAppColor),
-              // )
             ],
           ),
           SpaceBox(50),
           Text(
-            'Robert Klim',
+            widget.consultation.doctor.name,
             textAlign: TextAlign.center,
             style: CustomTextStyle.titleTextStyle,
           ),
@@ -72,56 +63,12 @@ class _MakePaymentState extends State<MakePayment> {
           Container(
             margin: EdgeInsets.only(left: 100.toWidth, right: 100.toWidth),
             child: Text(
-              'MD, Neurology',
+              widget.consultation.doctor.speciality,
               textAlign: TextAlign.center,
               style: CustomTextStyle.subTitleStyle,
             ),
           ),
           SpaceBox(10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomPadding(
-                top: 15,
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.star_rounded,
-                      size: 35.toFont,
-                      color: ColorConstants.starColor,
-                    ),
-                    Icon(
-                      Icons.star_rounded,
-                      size: 35.toFont,
-                      color: ColorConstants.starColor,
-                    ),
-                    Icon(
-                      Icons.star_rounded,
-                      size: 35.toFont,
-                      color: ColorConstants.starColor,
-                    ),
-                    Icon(
-                      Icons.star_rounded,
-                      size: 35.toFont,
-                      color: ColorConstants.grey,
-                    ),
-                    CustomPadding(
-                      left: 20.toWidth,
-                      child: Text(
-                        '3.0',
-                        style: CustomTextStyle.ratingStyle,
-                      ),
-                    ),
-                    CustomPadding(
-                        left: 20.toWidth,
-                        child: VerticalDivider(
-                          color: ColorConstants.grey,
-                        )),
-                  ],
-                ),
-              ),
-            ],
-          ),
           Container(
             margin: EdgeInsets.only(
                 top: 100.toHeight, left: 30.toWidth, right: 30.toWidth),
@@ -150,7 +97,7 @@ class _MakePaymentState extends State<MakePayment> {
                       CustomPadding(
                         left: 20,
                         child: Text(
-                          '25 November 2020',
+                          "${widget.consultation.date.day < 9 ? "0" + widget.consultation.date.day.toString() : widget.consultation.date.day} ${getMonth(widget.consultation.date.month)} ${widget.consultation.date.year}",
                           style: CustomTextStyle.paymentProfileCard,
                         ),
                       )
@@ -171,7 +118,7 @@ class _MakePaymentState extends State<MakePayment> {
                       CustomPadding(
                         left: 20,
                         child: Text(
-                          '03 PM - 04 PM',
+                          widget.consultation.timeSlot,
                           style: CustomTextStyle.paymentProfileCard,
                         ),
                       )
@@ -194,7 +141,7 @@ class _MakePaymentState extends State<MakePayment> {
                       CustomPadding(
                         left: 23,
                         child: Text(
-                          'Total Amount : \$244',
+                          'Total Amount : \$${widget.consultation.doctor.pricePerHour.toInt().toString()}',
                           style: CustomTextStyle.paymentProfileCard,
                         ),
                       )
@@ -208,7 +155,8 @@ class _MakePaymentState extends State<MakePayment> {
           CustomButton(
             buttonText: TextStrings().makePayment,
             onTap: () {
-              Navigator.pushNamed(context, Routes.PAYMENT);
+              Navigator.pushNamed(context, Routes.PAYMENT,
+                  arguments: {"consultation": widget.consultation});
             },
           ),
           SpaceBox(92),
@@ -222,5 +170,23 @@ class _MakePaymentState extends State<MakePayment> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: child,
     );
+  }
+
+  String getMonth(i) {
+    List<String> months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
+    return months[i + 1];
   }
 }

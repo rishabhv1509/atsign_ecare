@@ -8,8 +8,14 @@ class QuestionTextFormField extends StatefulWidget {
   final String optionText;
   final String description;
   final bool showSubTitle;
-  QuestionTextFormField(
-      {this.value, this.optionText, this.description, this.showSubTitle});
+  final bool isSelected;
+  QuestionTextFormField({
+    this.value,
+    this.optionText,
+    this.description,
+    this.showSubTitle,
+    this.isSelected,
+  });
 
   @override
   _QuestionTextFormFieldState createState() => _QuestionTextFormFieldState();
@@ -17,7 +23,6 @@ class QuestionTextFormField extends StatefulWidget {
 
 class _QuestionTextFormFieldState extends State<QuestionTextFormField> {
   String selectCheckup = '';
-  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,27 +36,44 @@ class _QuestionTextFormFieldState extends State<QuestionTextFormField> {
       decoration: BoxDecoration(
           color: ColorConstants.secondaryDarkAppColor,
           borderRadius: BorderRadius.circular(6),
-          border: isSelected
+          border: widget.isSelected
               ? Border.all(color: ColorConstants.logoBg, width: 1)
               : Border.all(color: ColorConstants.grey, width: 0.3)),
       child: SizedBox(
         width: 240.toWidth,
         height: (widget.showSubTitle) ? 100.toHeight : 80.toHeight,
-        child: RadioListTile(
+        child: ListTile(
           dense: true,
-          activeColor: ColorConstants.logoBg,
-          groupValue: selectCheckup,
-          title: Text(
-            widget.optionText ?? 'consult',
-            style: isSelected
-                ? TextStyle(
-                    fontSize: 30.toFont,
-                    fontWeight: FontWeight.w500,
-                    color: ColorConstants.logoBg)
-                : TextStyle(
-                    fontSize: 30.toFont,
-                    fontWeight: FontWeight.w500,
-                    color: ColorConstants.headingText),
+          title: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 20,
+                width: 20,
+                decoration: BoxDecoration(
+                  color:
+                      widget.isSelected ? ColorConstants.logoBg : Colors.white,
+                  border: Border.all(
+                    color: ColorConstants.logoBg,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              SizedBox(width: 30.toWidth),
+              Text(
+                widget.optionText ?? 'consult',
+                style: widget.isSelected
+                    ? TextStyle(
+                        fontSize: 30.toFont,
+                        fontWeight: FontWeight.w500,
+                        color: ColorConstants.logoBg)
+                    : TextStyle(
+                        fontSize: 30.toFont,
+                        fontWeight: FontWeight.w500,
+                        color: ColorConstants.headingText),
+              ),
+            ],
           ),
           subtitle: (widget.showSubTitle)
               ? Container(
@@ -63,13 +85,6 @@ class _QuestionTextFormFieldState extends State<QuestionTextFormField> {
                   ),
                 )
               : null,
-          value: widget.value,
-          onChanged: (val) {
-            setState(() {
-              selectCheckup = val;
-              isSelected = true;
-            });
-          },
         ),
       ),
     );

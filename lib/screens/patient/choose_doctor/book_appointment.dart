@@ -1,4 +1,6 @@
 import 'package:atsign_ecare/config/color_constants.dart';
+import 'package:atsign_ecare/models/consultation.dart';
+import 'package:atsign_ecare/models/doctor.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
@@ -8,54 +10,47 @@ import 'package:atsign_ecare/widgets/custom_button.dart';
 import 'package:atsign_ecare/widgets/custom_padding.dart';
 import 'package:atsign_ecare/widgets/space_box.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class BookAppointment extends StatefulWidget {
+  final Doctor doctor;
+
+  const BookAppointment({Key key, @required this.doctor}) : super(key: key);
+
   @override
   _BookAppointmentState createState() => _BookAppointmentState();
 }
 
 class _BookAppointmentState extends State<BookAppointment> {
   String selectTimeSlot = '';
+  DateTime _selectedDate;
   Color unavailable = ColorConstants.secondaryDarkAppColor;
   Color selectedSlot = ColorConstants.grey;
-  String _selectedDate;
-  String _dateCount;
-  String _range;
-  String _rangeCount;
 
   @override
   void initState() {
-    _selectedDate = '';
-    _dateCount = '';
-    _range = '';
-    _rangeCount = '';
     super.initState();
   }
 
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
     setState(() {
-      if (args.value is PickerDateRange) {
-        _range =
-            DateFormat('dd/MM/yyyy').format(args.value.startDate).toString() +
-                ' - ' +
-                DateFormat('dd/MM/yyyy')
-                    .format(args.value.endDate ?? args.value.startDate)
-                    .toString();
-      } else if (args.value is DateTime) {
+      if (args.value is DateTime) {
         _selectedDate = args.value;
-      } else if (args.value is List<DateTime>) {
-        _dateCount = args.value.length.toString();
-      } else {
-        _rangeCount = args.value.length.toString();
       }
+      print(_selectedDate);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
+    void _showError(String error) async {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(error),
+      ));
+    }
+
     return Scaffold(
       backgroundColor: ColorConstants.secondaryDarkAppColor,
       appBar: CustomAppBar(
@@ -71,91 +66,113 @@ class _BookAppointmentState extends State<BookAppointment> {
           Navigator.pushNamed(context, Routes.CONSULTATION);
         },
       ),
-      body: Column(
-        children: <Widget>[
-          CustomPadding(
-            top: 50.0,
-            left: 30.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  TextStrings().selectDate,
-                  style: CustomTextStyle.appBarTitleStyle,
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(
-                top: 30.toHeight,
-                left: 40.toWidth,
-                right: 30.toWidth,
-                bottom: 50.toHeight),
-            width: SizeConfig().screenWidth,
-            height: 450.toHeight,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                color: ColorConstants.secondaryDarkAppColor,
-                boxShadow: [
-                  BoxShadow(
-                      color: ColorConstants.unselectedBoxShadow, blurRadius: 20)
-                ]),
-            child: SfDateRangePicker(
-              todayHighlightColor: ColorConstants.logoBg,
-              selectionColor: ColorConstants.logoBg,
-              onSelectionChanged: _onSelectionChanged,
-              selectionMode: DateRangePickerSelectionMode.single,
-            ),
-          ),
-          CustomPadding(
-            top: 30.0,
-            left: 30.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  TextStrings().selectTime,
-                  style: CustomTextStyle.appBarTitleStyle,
-                ),
-              ],
-            ),
-          ),
-          CustomPadding(
-            top: 10.0,
-            left: 30.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  TextStrings().slotAvailable,
-                  style: CustomTextStyle.questionTitle,
-                ),
-              ],
-            ),
-          ),
-          Container(
-              margin: EdgeInsets.only(top: 20.toHeight),
-              padding: EdgeInsets.all(10),
-              child: Column(
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            CustomPadding(
+              top: 50.0,
+              left: 30.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [timeSlot('1'), timeSlot('2')],
-                  ),
-                  Row(
-                    children: [timeSlot('3'), timeSlot('4')],
+                  Text(
+                    TextStrings().selectDate,
+                    style: CustomTextStyle.appBarTitleStyle,
                   ),
                 ],
-              )),
-          SpaceBox(130.toHeight),
-          CustomButton(
-            width: 600.toWidth,
-            buttonText: TextStrings().confirm,
-            onTap: () {
-              Navigator.pushNamed(context, Routes.MAKEPAYMENTS);
-            },
-          ),
-        ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                  top: 30.toHeight,
+                  left: 40.toWidth,
+                  right: 30.toWidth,
+                  bottom: 50.toHeight),
+              width: SizeConfig().screenWidth,
+              height: 450.toHeight,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: ColorConstants.secondaryDarkAppColor,
+                  boxShadow: [
+                    BoxShadow(
+                        color: ColorConstants.unselectedBoxShadow,
+                        blurRadius: 20)
+                  ]),
+              child: SfDateRangePicker(
+                todayHighlightColor: ColorConstants.logoBg,
+                selectionColor: ColorConstants.logoBg,
+                onSelectionChanged: _onSelectionChanged,
+                selectionMode: DateRangePickerSelectionMode.single,
+              ),
+            ),
+            CustomPadding(
+              top: 30.0,
+              left: 30.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    TextStrings().selectTime,
+                    style: CustomTextStyle.appBarTitleStyle,
+                  ),
+                ],
+              ),
+            ),
+            CustomPadding(
+              top: 10.0,
+              left: 30.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    TextStrings().slotAvailable,
+                    style: CustomTextStyle.questionTitle,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+                margin: EdgeInsets.only(top: 20.toHeight),
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    for (int i = 0;
+                        i < widget.doctor.timeSlots.length;
+                        i = i + 2)
+                      Row(
+                        children: [
+                          timeSlot(widget.doctor.timeSlots[i]),
+                          if (i + 1 < widget.doctor.timeSlots.length)
+                            timeSlot(widget.doctor.timeSlots[i + 1])
+                        ],
+                      ),
+                    // Row(
+                    //   children: [timeSlot('3'), timeSlot('4')],
+                    // ),
+                  ],
+                )),
+            SpaceBox(50.toHeight),
+            CustomButton(
+              width: 600.toWidth,
+              buttonText: TextStrings().confirm,
+              onTap: () {
+                if (_selectedDate == null) {
+                  _showError("Please select date");
+                } else if (selectTimeSlot == "") {
+                  _showError("Please select timeslots");
+                } else {
+                  Navigator.pushNamed(context, Routes.MAKEPAYMENTS, arguments: {
+                    "consultation": Consultation(
+                      doctor: widget.doctor,
+                      date: _selectedDate,
+                      timeSlot: selectTimeSlot,
+                    )
+                  });
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -170,10 +187,10 @@ class _BookAppointmentState extends State<BookAppointment> {
         left: 10.toWidth,
       ),
       decoration: BoxDecoration(
-          color: (value == '2') ? ColorConstants.grey : unavailable,
+          color: unavailable,
           borderRadius: BorderRadius.circular(6),
           border: Border.all(
-            color: (value == '3') ? ColorConstants.logoBg : ColorConstants.grey,
+            color: ColorConstants.grey,
           )),
       child: SizedBox(
         width: 250.toWidth,

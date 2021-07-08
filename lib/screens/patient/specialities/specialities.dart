@@ -5,7 +5,6 @@ import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
 import 'package:atsign_ecare/widgets/custom_appbar.dart';
-import 'package:atsign_ecare/widgets/custom_padding.dart';
 import 'package:flutter/material.dart';
 
 class Specialities extends StatefulWidget {
@@ -48,176 +47,75 @@ class _SpecialitiesState extends State<Specialities>
           Navigator.pushNamed(context, Routes.CONSULTATION);
         },
       ),
-      body: Column(
-        children: <Widget>[
-          CustomPadding(
-            top: 50,
-            left: 30,
-            right: 30,
-            child: Container(
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: ColorConstants.unselectedBoxShadow,
-                        blurRadius: 4)
-                  ],
-                  border:
-                      Border.all(color: ColorConstants.secondaryDarkAppColor)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      _controller.animateTo(0);
-                      setState(() {
-                        _currentIndex = 0;
-                      });
-                    },
-                    child: Container(
-                      width: SizeConfig().screenWidth / 2.3,
-                      height: 85.toHeight,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: ColorConstants.unselectedBoxShadow,
-                              blurRadius: 6)
-                        ],
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(6),
-                          bottomLeft: Radius.circular(6),
-                        ),
-                        color: _currentIndex == 0
-                            ? ColorConstants.logoBg
-                            : ColorConstants.secondaryDarkAppColor,
-                      ),
-                      child: Center(
-                        child: Text(
-                          TextStrings().specialitiesTitle,
-                          style: _currentIndex == 0
-                              ? CustomTextStyle.customButtonTextStyle
-                              : CustomTextStyle.grey26,
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      _controller.animateTo(1);
-                      setState(() {
-                        _currentIndex = 1;
-                      });
-                    },
-                    child: Container(
-                      width: SizeConfig().screenWidth / 2.3,
-                      height: 85.toHeight,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: ColorConstants.unselectedBoxShadow,
-                              blurRadius: 6)
-                        ],
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(6),
-                          bottomRight: Radius.circular(6),
-                        ),
-                        color: _currentIndex == 1
-                            ? ColorConstants.logoBg
-                            : ColorConstants.secondaryDarkAppColor,
-                      ),
-                      child: Center(
-                        child: Text(
-                          TextStrings().superspecialities,
-                          style: _currentIndex == 1
-                              ? CustomTextStyle.customButtonTextStyle
-                              : CustomTextStyle.grey26,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 20.toHeight),
+            specialitiesListTile(
+              leadingIcon: AllImages().gynecologist,
+              specialitiesTitle: TextStrings().gynecologist,
             ),
-          ),
-          Expanded(
-            child: TabBarView(
-                controller: _controller,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 40.toHeight),
-                    child: ListView(
-                      children: <Widget>[
-                        specialitiesListTile(
-                            leadingIcon: AllImages().gynecologist,
-                            specialitiesTitle: TextStrings().gynecologist,
-                            trailingAction: () {
-                              Navigator.pushNamed(context, Routes.GYNOCOLOGIST);
-                            }),
-                        specialitiesListTile(
-                            leadingIcon: AllImages().physician,
-                            specialitiesTitle: TextStrings().physician,
-                            trailingAction: () {}),
-                        specialitiesListTile(
-                            leadingIcon: AllImages().orthopedician,
-                            specialitiesTitle: TextStrings().orthopedician,
-                            trailingAction: () {}),
-                        specialitiesListTile(
-                            leadingIcon: AllImages().dietician,
-                            specialitiesTitle: TextStrings().dietician,
-                            trailingAction: () {}),
-                        specialitiesListTile(
-                            leadingIcon: AllImages().childrensHealth,
-                            specialitiesTitle: TextStrings().childrensHealth,
-                            trailingAction: () {}),
-                        specialitiesListTile(
-                            leadingIcon: AllImages().skinHair,
-                            specialitiesTitle: TextStrings().skinHair,
-                            trailingAction: () {}),
-                        specialitiesListTile(
-                            leadingIcon: AllImages().mentalWellness,
-                            specialitiesTitle: TextStrings().mentalWellness,
-                            trailingAction: () {}),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: SizeConfig().screenWidth,
-                    height: SizeConfig().screenHeight,
-                    color: ColorConstants.secondaryDarkAppColor,
-                  )
-                ]),
-          )
-        ],
+            specialitiesListTile(
+              leadingIcon: AllImages().physician,
+              specialitiesTitle: TextStrings().physician,
+            ),
+            specialitiesListTile(
+              leadingIcon: AllImages().orthopedician,
+              specialitiesTitle: TextStrings().orthopedician,
+            ),
+            specialitiesListTile(
+              leadingIcon: AllImages().dietician,
+              specialitiesTitle: TextStrings().dietician,
+            ),
+            specialitiesListTile(
+              leadingIcon: AllImages().childrensHealth,
+              specialitiesTitle: TextStrings().childrensHealth,
+            ),
+            specialitiesListTile(
+              leadingIcon: AllImages().skinHair,
+              specialitiesTitle: TextStrings().skinHair,
+            ),
+            specialitiesListTile(
+              leadingIcon: AllImages().mentalWellness,
+              specialitiesTitle: TextStrings().mentalWellness,
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget specialitiesListTile(
-      {String leadingIcon, String specialitiesTitle, Function trailingAction}) {
-    return Container(
-      margin:
-          EdgeInsets.symmetric(vertical: 10.toHeight, horizontal: 30.toWidth),
-      padding:
-          EdgeInsets.symmetric(vertical: 10.toHeight, horizontal: 10.toWidth),
-      decoration: BoxDecoration(
-          color: ColorConstants.secondaryDarkAppColor,
-          borderRadius: BorderRadius.circular(6),
-          boxShadow: [
-            BoxShadow(color: ColorConstants.unselectedBoxShadow, blurRadius: 10)
-          ]),
-      child: ListTile(
-        leading: Image.asset(leadingIcon),
-        title: Text(
-          specialitiesTitle,
-          style: CustomTextStyle.cardTextStyle,
-        ),
-        trailing: IconButton(
-          icon: Icon(
+      {String leadingIcon, String specialitiesTitle, Function onClick}) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          Routes.DOCTORSLIST,
+          arguments: {"speciality": specialitiesTitle},
+        );
+      },
+      child: Container(
+        margin:
+            EdgeInsets.symmetric(vertical: 10.toHeight, horizontal: 30.toWidth),
+        padding:
+            EdgeInsets.symmetric(vertical: 10.toHeight, horizontal: 10.toWidth),
+        decoration: BoxDecoration(
+            color: ColorConstants.secondaryDarkAppColor,
+            borderRadius: BorderRadius.circular(6),
+            boxShadow: [
+              BoxShadow(
+                  color: ColorConstants.unselectedBoxShadow, blurRadius: 10)
+            ]),
+        child: ListTile(
+          leading: Image.asset(leadingIcon),
+          title: Text(
+            specialitiesTitle,
+            style: CustomTextStyle.cardTextStyle,
+          ),
+          trailing: Icon(
             Icons.arrow_forward_ios,
             color: ColorConstants.headingText,
           ),
-          onPressed: trailingAction,
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/config/image_constants.dart';
+import 'package:atsign_ecare/models/consultation.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
@@ -11,6 +12,9 @@ import 'package:atsign_ecare/widgets/space_box.dart';
 import 'package:flutter/material.dart';
 
 class Payment extends StatefulWidget {
+  final Consultation consultation;
+
+  const Payment({Key key, @required this.consultation}) : super(key: key);
   @override
   _PaymentState createState() => _PaymentState();
 }
@@ -107,7 +111,8 @@ class _PaymentState extends State<Payment> {
           CustomButton(
             buttonText: TextStrings().pay,
             onTap: () {
-              Navigator.pushNamed(context, Routes.PAYMENTCOMPLETED);
+              Navigator.pushNamed(context, Routes.PAYMENTCOMPLETED,
+                  arguments: {"consultation": widget.consultation});
             },
           ),
         ]),

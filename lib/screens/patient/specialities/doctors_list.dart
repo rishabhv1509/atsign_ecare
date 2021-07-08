@@ -1,4 +1,5 @@
 import 'package:atsign_ecare/config/color_constants.dart';
+import 'package:atsign_ecare/models/doctor.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/patient/choose_doctor/widgets/choose_doctor_card.dart';
 import 'package:atsign_ecare/utils/constants.dart';
@@ -9,12 +10,25 @@ import 'package:atsign_ecare/widgets/custom_appbar.dart';
 import 'package:atsign_ecare/widgets/custom_padding.dart';
 import 'package:flutter/material.dart';
 
-class Gynecologist extends StatefulWidget {
+class DoctorsList extends StatefulWidget {
+  final String speciality;
+
+  const DoctorsList({Key key, @required this.speciality}) : super(key: key);
   @override
-  _GynecologistState createState() => _GynecologistState();
+  _DoctorsListState createState() => _DoctorsListState();
 }
 
-class _GynecologistState extends State<Gynecologist> {
+class _DoctorsListState extends State<DoctorsList> {
+  List<Doctor> doctors = [];
+
+  @override
+  void initState() {
+    super.initState();
+    MixedConstants.doctors.forEach((doc) {
+      if (doc.speciality == widget.speciality) doctors.add(doc);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -28,7 +42,7 @@ class _GynecologistState extends State<Gynecologist> {
           Navigator.pop(context);
         },
         showTitle: true,
-        title: TextStrings().gynecologist,
+        title: widget.speciality,
         trailingButtonAction: () {
           Navigator.pushNamed(context, Routes.CONSULTATION);
         },
@@ -55,7 +69,7 @@ class _GynecologistState extends State<Gynecologist> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  TextStrings().noofDoctors,
+                  "${doctors.length.toString()} available",
                   style: CustomTextStyle.questionTitle,
                 ),
               ],
@@ -65,10 +79,10 @@ class _GynecologistState extends State<Gynecologist> {
             width: SizeConfig().screenWidth,
             height: SizeConfig().screenHeight / 1.3,
             child: ListView.builder(
-              itemCount: 20,
+              itemCount: doctors.length,
               itemBuilder: (BuildContext context, int index) {
                 return DoctorCard(
-                  doctor: MixedConstants.doctors[0],
+                  doctor: doctors[0],
                 );
               },
             ),

@@ -50,10 +50,13 @@ class _SearchResultState extends State<SearchResult>
           Navigator.pushNamed(context, Routes.CONSULTATION);
         },
       ),
-      body: Column(
-        children: <Widget>[
-          for (int i = 0; i < result.length; i++) DoctorCard(doctor: result[i]),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            for (int i = 0; i < result.length; i++)
+              DoctorCard(doctor: result[i]),
+          ],
+        ),
       ),
     );
   }
