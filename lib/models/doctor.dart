@@ -40,4 +40,45 @@ class Doctor {
     this.localDegreePath,
     this.localProfileImagePath,
   });
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "phoneNumber": phoneNumber,
+        "email": email,
+        "speciality": speciality,
+        "location": location,
+        "yearsOfExp": yearsOfExp,
+        "degreePath": degreePath,
+        "idPath": idPath,
+        "profileImagePath": profileImagePath,
+        "profileDetails": profileDetails,
+        "daySlots": daySlots,
+        "timeSlote": timeSlote,
+        "pricePerHour": pricePerHour,
+        "address": address,
+        "hospital": hospital,
+        "localIdPath": localIdPath,
+        "localDegreePath": localDegreePath,
+        "localProfileImagePath": localProfileImagePath,
+      };
+
+  Doctor.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        phoneNumber = json['phoneNumber'],
+        email = json['email'],
+        speciality = json['speciality'],
+        location = json['location'],
+        yearsOfExp = json['yearsOfExp'],
+        degreePath = json['degreePath'],
+        idPath = json['idPath'],
+        profileImagePath = json['profileImagePath'],
+        profileDetails = json['profileDetails'],
+        daySlots = json['daySlots'],
+        timeSlote = json['timeSlote'],
+        pricePerHour = json['pricePerHour'],
+        address = json['address'],
+        hospital = json['hospital'],
+        localIdPath = json['localIdPath'],
+        localDegreePath = json['localDegreePath'],
+        localProfileImagePath = json['localProfileImagePath'];
 }

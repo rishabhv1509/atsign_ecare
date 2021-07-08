@@ -18,4 +18,21 @@ class Prescription {
     this.doctor,
     this.patient,
   });
+
+  Map<String, dynamic> toJson() => {
+        "tests": tests,
+        "medicines": medicines.map((med) => med.toJson()),
+        "content": content,
+        "date": date,
+        "doctor": doctor.toJson(),
+        "patient": patient.toJson(),
+      };
+
+  Prescription.fromJson(Map<String, dynamic> json)
+      : tests = json['tests'],
+        medicines = json['medicines'].map((med) => Medicines.fromJson(med)),
+        content = json['content'],
+        date = json['date'],
+        doctor = Doctor.fromJson(json['doctor']),
+        patient = Patient.fromJson(json['patient']);
 }

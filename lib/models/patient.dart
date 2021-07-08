@@ -21,7 +21,6 @@ class Patient {
         'gender': gender,
       };
 
-  /// Populate UserModel class from a JSON object. (Name Constructor).
   Patient.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         phoneNumber = json['phoneNumber'],
