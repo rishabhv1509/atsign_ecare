@@ -1,3 +1,4 @@
+import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:at_chat_flutter/utils/init_chat_service.dart';
 import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/config/image_constants.dart';
@@ -7,6 +8,9 @@ import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
 import 'package:atsign_ecare/widgets/custom_padding.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import '../../video_call.dart';
 
 class UpcomingConsultation extends StatefulWidget {
   final bool bookedLabel;
@@ -23,6 +27,11 @@ class UpcomingConsultation extends StatefulWidget {
 }
 
 class _UpcomingConsultationState extends State<UpcomingConsultation> {
+  Future<void> _handleCameraAndMic(Permission permission) async {
+    final status = await permission.request();
+    print(status);
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -81,9 +90,23 @@ class _UpcomingConsultationState extends State<UpcomingConsultation> {
                                         'chatWith': '@junglegreen16inc'
                                       });
                                 }),
-                                customContact(Icons.phone, () {
-                                  Navigator.pushNamed(
-                                      context, Routes.VIDEOCALL);
+                                customContact(Icons.phone, () async {
+                                  // Navigator.pushNamed(
+                                  //     context, Routes.VIDEOCALL);
+                                  await _handleCameraAndMic(Permission.camera);
+                                  await _handleCameraAndMic(
+                                      Permission.microphone);
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CallPage(
+                                        channelName: "testing",
+                                        role: ClientRole.Broadcaster,
+                                      ),
+                                    ),
+                                  );
+                                  // Navigator.pushNamed(
+                                  //     context, Routes.VideoCallPage);
                                 }),
                               ],
                             ),
