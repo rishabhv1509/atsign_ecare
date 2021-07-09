@@ -1,3 +1,4 @@
+import 'package:atsign_ecare/models/bookings.dart';
 import 'package:atsign_ecare/models/doctor.dart';
 import 'package:atsign_ecare/models/medicine.dart';
 import 'package:atsign_ecare/models/patient.dart';
@@ -227,5 +228,58 @@ class MixedConstants {
         "4 PM - 5 PM"
       ],
     ),
+  ];
+
+  static List<Patient> patients = [
+    Patient(
+      age: "32",
+      email: "adgeDRoberts@rhyta.com",
+      gender: "Female",
+      name: "Madge D. Roberts",
+      phoneNumber: "314-872-7871",
+      profileImage: "https://randomuser.me/api/portraits/men/3.jpg",
+    ),
+    Patient(
+      age: "22",
+      email: "anjuanitaJHicks@armyspy.com",
+      gender: "Female",
+      name: "Sanjuanita J. Hicks",
+      phoneNumber: "425-963-1012",
+      profileImage: "https://randomuser.me/api/portraits/women/85.jpg",
+    ),
+    Patient(
+      age: "23",
+      email: "LaurettaSArroyo@rhyta.com",
+      gender: "Female",
+      name: "Lauretta S. Arroyo",
+      phoneNumber: "314-872-7871",
+      profileImage: "https://randomuser.me/api/portraits/women/90.jpg",
+    ),
+    Patient(
+      age: "18",
+      email: "adgeDRoberts@rhyta.com",
+      gender: "Female",
+      name: "Tricia J. Fritsch",
+      phoneNumber: "314-872-7871",
+      profileImage: "https://randomuser.me/api/portraits/women/75.jpg",
+    ),
+  ];
+
+  static List<Bookings> bookings = [
+    Bookings(
+      date: DateTime.now(),
+      patient: patients[0],
+      timeSlot: "3 PM - 4 PM",
+    ),
+    Bookings(
+      date: DateTime.now(),
+      patient: patients[1],
+      timeSlot: "5 PM - 6 PM",
+    ),
+    Bookings(
+      date: DateTime.now(),
+      patient: patients[2],
+      timeSlot: "7 PM - 8 PM",
+    )
   ];
 }

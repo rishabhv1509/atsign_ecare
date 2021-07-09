@@ -4,6 +4,7 @@ class AllImages {
   factory AllImages() => _instance;
 
   String ai = "assets/images/ai.png";
+  String notifications = "assets/images/notifications.png";
   String camera = "assets/images/camera.png";
   String prescriptionAlt = "assets/images/prescriptionAlt.png";
   String gallery = "assets/images/gallery.png";

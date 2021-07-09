@@ -159,6 +159,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
+                    Row(
+                      children: <Widget>[
+                        CategoryCard(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              Routes.MEDICATIONREMINDERS,
+                            );
+                          },
+                          cardIcon: AllImages().notifications,
+                          cardTitle: "Medication Reminders",
+                        ),
+                      ],
+                    ),
                     SpaceBox(20.toHeight),
                     Container(
                       child: CarouselSlider.builder(

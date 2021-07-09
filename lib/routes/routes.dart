@@ -43,6 +43,7 @@ import 'package:atsign_ecare/screens/patient/my_consultation/feedback.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/myconsultation.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/video_call/video_call.dart';
 import 'package:atsign_ecare/screens/patient/my_prescriptions/my_prescriptions.dart';
+import 'package:atsign_ecare/screens/patient/notifications/medication_reminders.dart';
 import 'package:atsign_ecare/screens/patient/specialities/doctors_list.dart';
 import 'package:atsign_ecare/screens/patient/specialities/specialities.dart';
 import 'package:atsign_ecare/screens/patient/symptoms/symptoms.dart';
@@ -73,6 +74,7 @@ class SetupRoutes {
             selectedList: args['selectedList']);
       },
       Routes.PRIVATE_KEY_GEN_SCREEN: (context) => PrivateKeyQRCodeGenScreen(),
+      Routes.MEDICATIONREMINDERS: (context) => MedicationReminders(),
       Routes.LOGINOTPVERIFICATION: (_) => LoginOtpVerification(),
       Routes.SIGNUPOTPVERIFICATION: (_) => SignUpOtpVerification(),
 

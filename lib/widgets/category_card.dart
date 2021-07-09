@@ -41,7 +41,11 @@ class CategoryCard extends StatelessWidget {
                 height: 104.toHeight,
               ),
               SpaceBox(45.toHeight),
-              Text(cardTitle, style: CustomTextStyle.cardTextStyle),
+              Text(
+                cardTitle,
+                style: CustomTextStyle.cardTextStyle,
+                textAlign: TextAlign.center,
+              ),
             ],
           ),
         ),

@@ -1,7 +1,7 @@
 import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/doctor/bookings/booking_item.dart';
-import 'package:atsign_ecare/screens/patient/my_consultation/upcoming_consultation.dart';
+import 'package:atsign_ecare/utils/constants.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
@@ -65,35 +65,16 @@ class _BookingsState extends State<Bookings>
             ),
             ListView.builder(
               physics: NeverScrollableScrollPhysics(),
-              itemCount: 2,
+              itemCount: MixedConstants.bookings.length,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
                 return BookingItem(
                   bookedLabel: true,
+                  bookings: MixedConstants.bookings[index],
                 );
               },
             ),
-            Container(
-              margin: EdgeInsets.only(
-                left: 30.toWidth,
-                right: 30.toWidth,
-                top: 30.toHeight,
-              ),
-              child: Text(
-                "Past Booking",
-                style: CustomTextStyle.appBarTitleStyle,
-              ),
-            ),
-            ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: 2,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return UpcomingConsultation(
-                  showContantIcons: false,
-                );
-              },
-            ),
+
             // PastConsultation()
           ],
         ),

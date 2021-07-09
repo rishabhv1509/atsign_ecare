@@ -67,4 +67,5 @@ class Routes {
   static const String MYPRESCRIPTIONS = '/myprescriptions';
   static const String MYPRESCRIPTIONSDETAILS = '/myprescriptionsdetails';
   static const String SEARCHRESULT = '/searchresult';
+  static const String MEDICATIONREMINDERS = '/medicationreminders';
 }

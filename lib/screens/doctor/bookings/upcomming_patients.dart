@@ -8,12 +8,12 @@ import 'package:atsign_ecare/utils/text_styles.dart';
 import 'package:atsign_ecare/widgets/custom_padding.dart';
 import 'package:flutter/material.dart';
 
-class BookingItem extends StatefulWidget {
+class UpcomingPatient extends StatefulWidget {
   final bool bookedLabel;
   final bool showContantIcons;
   final Bookings bookings;
 
-  const BookingItem({
+  const UpcomingPatient({
     Key key,
     this.bookedLabel = false,
     this.showContantIcons = true,
@@ -21,10 +21,10 @@ class BookingItem extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _BookingItemState createState() => _BookingItemState();
+  _UpcomingPatientState createState() => _UpcomingPatientState();
 }
 
-class _BookingItemState extends State<BookingItem> {
+class _UpcomingPatientState extends State<UpcomingPatient> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -59,7 +59,8 @@ class _BookingItemState extends State<BookingItem> {
                         child: CircleAvatar(
                           radius: 70.toWidth,
                           backgroundImage: NetworkImage(
-                              widget.bookings.patient.profileImage),
+                            widget.bookings.patient.profileImage,
+                          ),
                         ),
                       ),
                     ),
@@ -163,7 +164,7 @@ class _BookingItemState extends State<BookingItem> {
           ),
           if (widget.bookedLabel)
             Positioned(
-              bottom: 20.toHeight,
+              top: 20.toHeight,
               right: 20.toWidth,
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 3),
@@ -181,24 +182,6 @@ class _BookingItemState extends State<BookingItem> {
         ],
       ),
     );
-  }
-
-  String getMonth(i) {
-    List<String> months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ];
-    return months[i + 1];
   }
 
   Widget customContact(IconData icon, Function onTap) {
@@ -219,5 +202,23 @@ class _BookingItemState extends State<BookingItem> {
         color: ColorConstants.logoBg,
       )),
     );
+  }
+
+  String getMonth(i) {
+    List<String> months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
+    return months[i + 1];
   }
 }

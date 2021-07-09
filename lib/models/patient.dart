@@ -4,6 +4,7 @@ class Patient {
   final String email;
   final String age;
   final String gender;
+  final String profileImage;
 
   Patient({
     this.name,
@@ -11,6 +12,7 @@ class Patient {
     this.email,
     this.age,
     this.gender,
+    this.profileImage,
   });
 
   Map<String, dynamic> toJson() => {
@@ -19,6 +21,7 @@ class Patient {
         'email': email,
         'age': age,
         'gender': gender,
+        'profileImage': profileImage,
       };
 
   Patient.fromJson(Map<String, dynamic> json)
@@ -26,5 +29,6 @@ class Patient {
         phoneNumber = json['phoneNumber'],
         email = json['email'],
         age = json['age'],
+        profileImage = json['profileImage'],
         gender = json['gender'];
 }
