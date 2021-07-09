@@ -47,6 +47,7 @@ class Routes {
   static const String CHANGEPASSWORD = '/changepassword';
   static const String CHAT = '/chat';
   static const String VIDEOCALL = '/videocall';
+  static const String VideoCallPage = '/VideoCallPage';
   static const String HEALTHCHECKUP = '/healthcheckup';
   static const String FEEDBACK = '/feedback';
   static const String SPECIALITIES = '/specialities';

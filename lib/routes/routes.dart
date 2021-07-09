@@ -50,6 +50,7 @@ import 'package:atsign_ecare/screens/patient/specialities/doctors_list.dart';
 import 'package:atsign_ecare/screens/patient/specialities/specialities.dart';
 import 'package:atsign_ecare/screens/patient/symptoms/symptoms.dart';
 import 'package:atsign_ecare/screens/splash_screen.dart';
+import 'package:atsign_ecare/screens/video_call.dart';
 import 'package:atsign_ecare/screens/welcome_screen/welcome_screen.dart';
 import 'package:atsign_ecare/services/navigation_service.dart';
 import 'package:flutter/material.dart';
@@ -143,6 +144,7 @@ class SetupRoutes {
         return Chat(chatWith: args['chatWith']);
       },
       Routes.VIDEOCALL: (_) => VideoCall(),
+      // Routes.VideoCallPage: (_) => VideoCallPage(),
       Routes.FEEDBACK: (_) => FeedbackScreen(),
       Routes.HEALTHCHECKUP: (_) => HealthCheckup(),
       Routes.SPECIALITIES: (_) => Specialities(),
