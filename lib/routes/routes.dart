@@ -14,6 +14,8 @@ import 'package:atsign_ecare/screens/doctor/bookings/bookings.dart';
 import 'package:atsign_ecare/screens/doctor/home/doctor_home_screen.dart';
 import 'package:atsign_ecare/screens/doctor/message/chat.dart';
 import 'package:atsign_ecare/screens/doctor/message/patient_list.dart';
+import 'package:atsign_ecare/screens/doctor/prescriptions/prescriptions.dart';
+import 'package:atsign_ecare/screens/doctor/prescriptions/prescriptions_edit.dart';
 import 'package:atsign_ecare/screens/doctor/profile/doctor_profile.dart';
 import 'package:atsign_ecare/screens/doctor/profile/editprofilescreen.dart';
 import 'package:atsign_ecare/screens/doctor/total_consultation/total_consultation_screen.dart';
@@ -53,7 +55,7 @@ import 'package:atsign_ecare/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 class SetupRoutes {
-  static String initialRoute = Routes.HOMESCREEN;
+  static String initialRoute = Routes.DOCTORHOME;
 
   static Map<String, WidgetBuilder> get routes {
     return {
@@ -89,6 +91,7 @@ class SetupRoutes {
       Routes.MYPRESCRIPTIONS: (_) => MyPrescriptions(),
       Routes.MYCONSULTATION: (context) => MyConsultation(),
       Routes.CONSULTATION: (_) => Consultation(),
+      Routes.PRESCRIPTIONSLIST: (_) => PrescriptionsList(),
       Routes.SEARCHRESULT: (context) {
         Map<String, dynamic> args =
             ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
@@ -129,6 +132,11 @@ class SetupRoutes {
       Routes.REPORTS: (_) => Reports(),
       Routes.PRESCRIPTION: (_) => Prescription(),
       Routes.CHANGEPASSWORD: (_) => ChangePassword(),
+      Routes.PRESCRIPTIONSEDIT: (context) {
+        Map<String, dynamic> args =
+            ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+        return PrescriptionEdit(prescription: args['prescription']);
+      },
       Routes.CHAT: (_) {
         Map<String, dynamic> args =
             ModalRoute.of(_).settings.arguments as Map<String, dynamic>;

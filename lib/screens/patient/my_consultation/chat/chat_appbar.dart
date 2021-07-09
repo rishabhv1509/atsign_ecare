@@ -69,8 +69,8 @@ class ChatAppBar extends StatelessWidget {
                 )
               ],
             ),
+            Spacer(),
             Container(
-              margin: EdgeInsets.only(left: 180.toWidth),
               width: 70.toWidth,
               height: 70.toHeight,
               decoration: BoxDecoration(
@@ -87,7 +87,29 @@ class ChatAppBar extends StatelessWidget {
                 onPressed: () {},
                 color: ColorConstants.logoBg,
               )),
-            )
+            ),
+            SizedBox(width: 10.toWidth),
+            Container(
+              width: 70.toWidth,
+              height: 70.toHeight,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: ColorConstants.secondaryDarkAppColor,
+                  boxShadow: [
+                    BoxShadow(
+                        color: ColorConstants.unselectedBoxShadow,
+                        blurRadius: 20)
+                  ]),
+              child: Center(
+                  child: IconButton(
+                icon: Icon(Icons.assignment),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(Routes.PRESCRIPTIONSLIST);
+                },
+                color: ColorConstants.logoBg,
+              )),
+            ),
+            SizedBox(width: 10.toWidth),
           ],
         ),
       ),

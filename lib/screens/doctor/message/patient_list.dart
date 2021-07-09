@@ -2,6 +2,7 @@ import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/doctor/message/chat_list_item.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/past_consultation.dart';
+import 'package:atsign_ecare/utils/constants.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/widgets/custom_appbar.dart';
@@ -55,7 +56,7 @@ class _PatientListState extends State<PatientList>
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 ListView.builder(
-                    itemCount: 3,
+                    itemCount: MixedConstants.patients.length,
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                           onTap: () {

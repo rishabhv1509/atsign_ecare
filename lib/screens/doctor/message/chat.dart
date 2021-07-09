@@ -1,4 +1,3 @@
-import 'package:at_chat_flutter/at_chat_flutter.dart';
 import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/screens/doctor/message/chat_appbar.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
@@ -15,7 +14,7 @@ class DoctorChat extends StatefulWidget {
 class _DoctorChatState extends State<DoctorChat> {
   @override
   void initState() {
-    setChatWithAtSign('@junglegreen16inc', isGroup: false);
+    // setChatWithAtSign('@junglegreen16inc', isGroup: false);
     super.initState();
   }
 
@@ -28,12 +27,13 @@ class _DoctorChatState extends State<DoctorChat> {
         preferredSize: Size.fromHeight(80.0),
         child: DoctorChatAppBar(),
       ),
-      body: ChatScreen(
-        height: SizeConfig().screenHeight,
-        incomingMessageColor: Colors.blue[100],
-        outgoingMessageColor: Colors.green[100],
-        isScreen: true,
-      ),
+      body: Container(),
+      // ChatScreen(
+      //   height: SizeConfig().screenHeight,
+      //   incomingMessageColor: Colors.blue[100],
+      //   outgoingMessageColor: Colors.green[100],
+      //   isScreen: true,
+      // ),
       // bottomNavigationBar: ChatInput(),
     );
   }

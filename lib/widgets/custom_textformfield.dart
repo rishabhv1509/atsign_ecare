@@ -12,15 +12,18 @@ class CustomTextFormField extends StatefulWidget {
   bool obsecureText;
   final bool showSuffixIcon;
   final bool showPrefixIcon;
-  CustomTextFormField(
-      {this.prefixIcon,
-      this.hintText,
-      this.keyboardType,
-      this.controller,
-      this.validator,
-      this.showSuffixIcon,
-      this.showPrefixIcon = true,
-      this.obsecureText});
+  final int maxLine;
+  CustomTextFormField({
+    this.prefixIcon,
+    this.hintText,
+    this.keyboardType,
+    this.controller,
+    this.validator,
+    this.showSuffixIcon,
+    this.showPrefixIcon = true,
+    this.obsecureText,
+    this.maxLine = 1,
+  });
   @override
   _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
 }
@@ -33,6 +36,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       validator: widget.validator,
       controller: widget.controller,
       keyboardType: widget.keyboardType,
+      maxLines: widget.maxLine,
       decoration: InputDecoration(
         suffixIcon: widget.showSuffixIcon ?? false
             ? IconButton(

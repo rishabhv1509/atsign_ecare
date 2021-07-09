@@ -90,7 +90,7 @@ class MixedConstants {
         age: "38",
         email: "viral.sangani2011@gmail.com",
         gender: "Male",
-        name: "Viral Sangani",
+        name: "John Doe",
         phoneNumber: "(+91) 98242 80752",
       ),
     )

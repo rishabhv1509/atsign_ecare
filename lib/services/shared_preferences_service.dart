@@ -21,4 +21,5 @@ class SharedPrefConstant {
   static const String PatientData = "patient_data";
   static const String DoctorData = "doctor_data";
   static const String Consultation = "consultation";
+  static const String Prescription = "prescription";
 }

@@ -11,7 +11,7 @@ class Medicines {
         'interval': interval,
       };
 
-  Medicines.fromJson(Map<String, dynamic> json)
+  Medicines.fromJson(json)
       : name = json['name'],
         time = json['time'],
         interval = json['interval'];

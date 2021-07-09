@@ -3,12 +3,12 @@ import 'package:atsign_ecare/models/medicine.dart';
 import 'package:atsign_ecare/models/patient.dart';
 
 class Prescription {
-  final List<String> tests;
-  final List<Medicines> medicines;
-  final String content;
-  final DateTime date;
-  final Doctor doctor;
-  final Patient patient;
+  List<dynamic> tests;
+  List<Medicines> medicines;
+  String content;
+  DateTime date;
+  Doctor doctor;
+  Patient patient;
 
   Prescription({
     this.tests,
@@ -21,18 +21,22 @@ class Prescription {
 
   Map<String, dynamic> toJson() => {
         "tests": tests,
-        "medicines": medicines.map((med) => med.toJson()),
+        "medicines": medicines.map((med) => med.toJson()).toList(),
+        "date": date.toIso8601String(),
         "content": content,
-        "date": date,
         "doctor": doctor.toJson(),
         "patient": patient.toJson(),
       };
 
-  Prescription.fromJson(Map<String, dynamic> json)
-      : tests = json['tests'],
-        medicines = json['medicines'].map((med) => Medicines.fromJson(med)),
-        content = json['content'],
-        date = json['date'],
-        doctor = Doctor.fromJson(json['doctor']),
-        patient = Patient.fromJson(json['patient']);
+  Prescription.fromJson(Map<String, dynamic> json) {
+    medicines = [];
+    tests = json['tests'];
+    json['medicines'].forEach((med) {
+      medicines.add(Medicines.fromJson(med));
+    });
+    content = json['content'];
+    date = DateTime.parse(json['date']);
+    doctor = Doctor.fromJson(json['doctor']);
+    patient = Patient.fromJson(json['patient']);
+  }
 }

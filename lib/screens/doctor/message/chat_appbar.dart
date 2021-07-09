@@ -69,25 +69,44 @@ class DoctorChatAppBar extends StatelessWidget {
                 )
               ],
             ),
-            Container(
-              margin: EdgeInsets.only(left: 180.toWidth),
-              width: 70.toWidth,
-              height: 70.toHeight,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: ColorConstants.secondaryDarkAppColor,
-                  boxShadow: [
-                    BoxShadow(
-                        color: ColorConstants.unselectedBoxShadow,
-                        blurRadius: 20)
-                  ]),
-              child: Center(
-                  child: IconButton(
-                icon: Icon(Icons.call),
-                onPressed: () {},
-                color: ColorConstants.logoBg,
-              )),
-            )
+            // Container(
+            //   margin: EdgeInsets.only(left: 180.toWidth),
+            //   width: 70.toWidth,
+            //   height: 70.toHeight,
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(100),
+            //       color: ColorConstants.secondaryDarkAppColor,
+            //       boxShadow: [
+            //         BoxShadow(
+            //             color: ColorConstants.unselectedBoxShadow,
+            //             blurRadius: 20)
+            //       ]),
+            //   child: Center(
+            //       child: IconButton(
+            //     icon: Icon(Icons.call),
+            //     onPressed: () {},
+            //     color: ColorConstants.logoBg,
+            //   )),
+            // ),
+            // Container(
+            //   margin: EdgeInsets.only(left: 180.toWidth),
+            //   width: 70.toWidth,
+            //   height: 70.toHeight,
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(100),
+            //       color: ColorConstants.secondaryDarkAppColor,
+            //       boxShadow: [
+            //         BoxShadow(
+            //             color: ColorConstants.unselectedBoxShadow,
+            //             blurRadius: 20)
+            //       ]),
+            //   child: Center(
+            //       child: IconButton(
+            //     icon: Icon(Icons.ac_unit),
+            //     onPressed: () {},
+            //     color: ColorConstants.logoBg,
+            //   )),
+            // )
           ],
         ),
       ),
