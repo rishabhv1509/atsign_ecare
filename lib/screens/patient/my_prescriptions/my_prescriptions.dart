@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:atsign_ecare/config/color_constants.dart';
+import 'package:atsign_ecare/config/image_constants.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/patient/my_prescriptions/bottom_share_url.dart';
 import 'package:atsign_ecare/screens/patient/my_prescriptions/my_prescriptions_details.dart';
 import 'package:atsign_ecare/utils/constants.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/widgets/custom_appbar.dart';
+import 'package:atsign_ecare/widgets/custom_button.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +20,7 @@ class MyPrescriptions extends StatefulWidget {
 class _MyPrescriptionsState extends State<MyPrescriptions>
     with SingleTickerProviderStateMixin {
   List<int> selectedIndexes = [];
+  bool fileUploaded = false;
   bool isLoading = false;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   String buttonText = "Copy URL";
@@ -84,6 +87,22 @@ class _MyPrescriptionsState extends State<MyPrescriptions>
               padding: EdgeInsets.only(top: 10.toHeight),
               child: ListView(
                 children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: CustomButton(
+                      buttonText: "Upload Document",
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(Routes.UPLOADPRESCRIPTION)
+                            .then((value) => {
+                                  setState(() {
+                                    fileUploaded = true;
+                                  })
+                                });
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 10.toHeight),
                   Center(
                     child: Text(
                       "Long press to select and share",
@@ -110,6 +129,22 @@ class _MyPrescriptionsState extends State<MyPrescriptions>
                             ),
                           ),
                         );
+                      },
+                    ),
+                  if (fileUploaded)
+                    specialitiesUploadedDocTile(
+                      index: MixedConstants.prescriptionData.length + 1,
+                      title: "",
+                      subtitle: formatDate(DateTime.now()),
+                      onClick: () {
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //     builder: (context) => MyPrescriptionsDetails(
+                        //       prescription: MixedConstants.prescriptionData[
+                        //           MixedConstants.prescriptionData.length + 1],
+                        //     ),
+                        //   ),
+                        // );
                       },
                     ),
                 ],
@@ -164,6 +199,81 @@ class _MyPrescriptionsState extends State<MyPrescriptions>
                   color: ColorConstants.unselectedBoxShadow, blurRadius: 10)
             ]),
         child: ListTile(
+          title: Text(
+            title,
+            style: TextStyle(
+              fontSize: 30.toFont,
+              fontWeight: FontWeight.w500,
+              color: ColorConstants.headingText,
+            ),
+          ),
+          subtitle: Padding(
+            padding: EdgeInsets.only(top: 8.0),
+            child: Row(
+              children: [
+                Text("Date: ", style: TextStyle(fontSize: 25.toFont)),
+                Text(
+                  subtitle,
+                  style: TextStyle(
+                    fontSize: 25.toFont,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          trailing: IconButton(
+            icon: Icon(
+              Icons.arrow_forward_ios,
+              color: ColorConstants.headingText,
+            ),
+            onPressed: () {},
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget specialitiesUploadedDocTile({
+    int index,
+    String title,
+    String subtitle,
+    Function onClick,
+  }) {
+    return GestureDetector(
+      onLongPress: () {
+        setState(() {
+          selectedIndexes.add(index);
+        });
+      },
+      onTap: () {
+        if (selectedIndexes.length == 0)
+          onClick();
+        else if (selectedIndexes.contains(index))
+          setState(() {
+            selectedIndexes.remove(index);
+          });
+        else if (!selectedIndexes.contains(index))
+          setState(() {
+            selectedIndexes.add(index);
+          });
+      },
+      child: Container(
+        margin:
+            EdgeInsets.symmetric(vertical: 10.toHeight, horizontal: 30.toWidth),
+        padding:
+            EdgeInsets.symmetric(vertical: 10.toHeight, horizontal: 10.toWidth),
+        decoration: BoxDecoration(
+            color: selectedIndexes.contains(index)
+                ? ColorConstants.boxShadow
+                : ColorConstants.secondaryDarkAppColor,
+            borderRadius: BorderRadius.circular(6),
+            boxShadow: [
+              BoxShadow(
+                  color: ColorConstants.unselectedBoxShadow, blurRadius: 10)
+            ]),
+        child: ListTile(
+          leading: Image.asset(AllImages().gallery),
           title: Text(
             title,
             style: TextStyle(

@@ -1,11 +1,14 @@
 import 'package:atsign_ecare/config/color_constants.dart';
-import 'package:atsign_ecare/config/image_constants.dart';
+import 'package:atsign_ecare/models/patient.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
 import 'package:atsign_ecare/widgets/custom_padding.dart';
 import 'package:flutter/material.dart';
 
 class ChatListItem extends StatefulWidget {
+  final Patient patient;
+
+  const ChatListItem({Key key, @required this.patient}) : super(key: key);
   @override
   _ChatListItemState createState() => _ChatListItemState();
 }
@@ -34,7 +37,7 @@ class _ChatListItemState extends State<ChatListItem> {
         children: <Widget>[
           CircleAvatar(
             radius: 45.toWidth,
-            backgroundImage: AssetImage(AllImages().videoCallDoctor),
+            backgroundImage: NetworkImage(widget.patient.profileImage),
           ),
           SizedBox(width: 40.toWidth),
           Container(
@@ -47,7 +50,7 @@ class _ChatListItemState extends State<ChatListItem> {
               children: <Widget>[
                 CustomPadding(
                   child: Text(
-                    'Robert Kilm',
+                    widget.patient.name,
                     style: CustomTextStyle.appBarTitleStyle.copyWith(
                       fontSize: 28.toFont,
                     ),

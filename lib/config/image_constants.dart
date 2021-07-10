@@ -3,6 +3,12 @@ class AllImages {
   static AllImages _instance = AllImages._();
   factory AllImages() => _instance;
 
+  List<String> bannerImage = [
+    "assets/images/banner-3.png",
+    "assets/images/banner-1.png",
+    "assets/images/banner-2.png",
+  ];
+
   String ai = "assets/images/ai.png";
   String notifications = "assets/images/notifications.png";
   String camera = "assets/images/camera.png";

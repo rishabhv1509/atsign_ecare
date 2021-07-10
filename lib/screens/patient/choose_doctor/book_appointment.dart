@@ -200,7 +200,7 @@ class _BookAppointmentState extends State<BookAppointment> {
           activeColor: ColorConstants.logoBg,
           groupValue: selectTimeSlot,
           title: Text(
-            '10 AM - 11 AM',
+            value,
             style: CustomTextStyle.slotTextStyle,
           ),
           value: value,

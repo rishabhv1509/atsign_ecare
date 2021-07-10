@@ -118,6 +118,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: <Widget>[
                         CategoryCard(
                           onTap: () {
+                            Navigator.pushNamed(context, Routes.SPECIALITIES);
+                          },
+                          cardIcon: AllImages().specialistIcon,
+                          cardTitle: TextStrings().specialities,
+                        ),
+                        CategoryCard(
+                          onTap: () {
                             Navigator.pushNamed(context, Routes.MYCONSULTATION,
                                 arguments: {
                                   'chatWithAtSign': '@junglegreen16inc'
@@ -125,13 +132,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           cardIcon: AllImages().consultationIcon,
                           cardTitle: TextStrings().consultation,
-                        ),
-                        CategoryCard(
-                          onTap: () {
-                            Navigator.pushNamed(context, Routes.SPECIALITIES);
-                          },
-                          cardIcon: AllImages().specialistIcon,
-                          cardTitle: TextStrings().specialities,
                         ),
                       ],
                     ),
@@ -178,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: CarouselSlider.builder(
                         itemCount: 3,
                         itemBuilder: (BuildContext context, int index, int x) {
-                          return CarouselSliderItem();
+                          return CarouselSliderItem(index: index);
                         },
                         options: CarouselOptions(
                             aspectRatio: 1.9,

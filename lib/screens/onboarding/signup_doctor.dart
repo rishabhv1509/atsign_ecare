@@ -40,7 +40,7 @@ class _SignUpScreenDoctorState extends State<SignUpScreenDoctor> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _specialityController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
-  dynamic _yearOfExp = 1.0;
+  dynamic _yearOfExp = 0;
 
   GlobalKey<FormState> _formkey = new GlobalKey<FormState>();
   Validators validators = Validators();

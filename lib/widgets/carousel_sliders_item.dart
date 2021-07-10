@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 class CarouselSliderItem extends StatefulWidget {
   final String image;
   final String imageTitle;
-  CarouselSliderItem({this.image, this.imageTitle});
+  final int index;
+  CarouselSliderItem({
+    this.image,
+    this.imageTitle,
+    @required this.index,
+  });
   @override
   _CarouselSliderItemState createState() => _CarouselSliderItemState();
 }
@@ -17,11 +22,14 @@ class _CarouselSliderItemState extends State<CarouselSliderItem> {
     return Container(
       margin: EdgeInsets.all(5.0),
       width: SizeConfig().screenWidth,
-      height: 150.toHeight,
+      height: 80.toHeight,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          image: DecorationImage(
-              image: AssetImage(AllImages().slider), fit: BoxFit.cover)),
+        borderRadius: BorderRadius.circular(5),
+        image: DecorationImage(
+          image: AssetImage(AllImages().bannerImage[widget.index]),
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }

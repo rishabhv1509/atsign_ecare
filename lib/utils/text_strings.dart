@@ -6,7 +6,7 @@ class TextStrings {
   String patiens = "Patients";
   String bookings = "Bookings";
 
-  String appName = 'AtSign E-Health';
+  String appName = 'WeCare';
   String tagLine = 'Search Specialist and Certified\nDoctors for your Family!';
   String noAccount = 'No account? ';
 //UserType
@@ -42,7 +42,7 @@ class TextStrings {
   String chooseDoctor = 'I am Doctor';
   String choosePatient = 'I am Patient';
   //SignupScreen Text
-  String signupTitle = 'Welcome to AtSign E-Health!';
+  String signupTitle = 'Welcome to WeCare!';
   String signupSubTitleText = 'Please fill out the form below to get started';
   String haveAccount = 'Have account? ';
   //OTPVerify Text

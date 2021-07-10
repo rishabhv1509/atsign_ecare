@@ -55,6 +55,7 @@ class CustomRadioButtonState extends State<CustomRadioButton> {
                             : FontWeight.w400,
                         fontSize: 30.toFont,
                       ),
+                      textAlign: TextAlign.center,
                     )
                   ],
                 ),

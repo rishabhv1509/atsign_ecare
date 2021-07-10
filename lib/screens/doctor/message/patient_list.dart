@@ -59,14 +59,17 @@ class _PatientListState extends State<PatientList>
                     itemCount: MixedConstants.patients.length,
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              Routes.CHAT,
-                              arguments: {'chatWith': '@junglegreen16inc'},
-                            );
-                          },
-                          child: ChatListItem());
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            Routes.CHAT,
+                            arguments: {'chatWith': '@junglegreen16inc'},
+                          );
+                        },
+                        child: ChatListItem(
+                          patient: MixedConstants.patients[index],
+                        ),
+                      );
                     }),
                 PastConsultation(),
               ],

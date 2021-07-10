@@ -104,7 +104,9 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                       child: CarouselSlider.builder(
                         itemCount: 3,
                         itemBuilder: (BuildContext context, int index, int i) {
-                          return CarouselSliderItem();
+                          return CarouselSliderItem(
+                            index: index,
+                          );
                         },
                         options: CarouselOptions(
                             aspectRatio: 1.9,

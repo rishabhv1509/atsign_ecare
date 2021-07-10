@@ -20,7 +20,7 @@ class SignUpScreenDoctorThree extends StatefulWidget {
 }
 
 class _SignUpScreenDoctorThreeState extends State<SignUpScreenDoctorThree> {
-  double _currentSliderValue = 10;
+  double _currentSliderValue = 100;
   bool onChoose = true;
   File _image;
   String phoneNumber;
@@ -270,8 +270,8 @@ class _SignUpScreenDoctorThreeState extends State<SignUpScreenDoctorThree> {
                 thumbColor: themeData.colorScheme.background),
             child: Slider(
               value: _currentSliderValue,
-              min: 0,
-              max: 200,
+              min: 100,
+              max: 500,
               divisions: 4,
               onChanged: (double value) {
                 setState(() {
@@ -282,7 +282,7 @@ class _SignUpScreenDoctorThreeState extends State<SignUpScreenDoctorThree> {
           ),
         ),
         Text(
-          sliderTitle,
+          "\$${_currentSliderValue.toInt().toString()}",
           style: CustomTextStyle.cardTextStyle,
         ),
       ],

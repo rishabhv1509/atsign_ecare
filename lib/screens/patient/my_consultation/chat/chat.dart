@@ -1,8 +1,6 @@
 import 'package:at_chat_flutter/at_chat_flutter.dart';
 import 'package:atsign_ecare/config/color_constants.dart';
-import 'package:atsign_ecare/controllers/initialization_controller.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/chat/chat_appbar.dart';
-import 'package:atsign_ecare/screens/patient/my_consultation/chat/chat_input_widget.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:flutter/material.dart';
 

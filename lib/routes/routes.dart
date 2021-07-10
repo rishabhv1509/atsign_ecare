@@ -45,18 +45,18 @@ import 'package:atsign_ecare/screens/patient/my_consultation/feedback.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/myconsultation.dart';
 import 'package:atsign_ecare/screens/patient/my_consultation/video_call/video_call.dart';
 import 'package:atsign_ecare/screens/patient/my_prescriptions/my_prescriptions.dart';
+import 'package:atsign_ecare/screens/patient/my_prescriptions/upload_prescription.dart';
 import 'package:atsign_ecare/screens/patient/notifications/medication_reminders.dart';
 import 'package:atsign_ecare/screens/patient/specialities/doctors_list.dart';
 import 'package:atsign_ecare/screens/patient/specialities/specialities.dart';
 import 'package:atsign_ecare/screens/patient/symptoms/symptoms.dart';
 import 'package:atsign_ecare/screens/splash_screen.dart';
-import 'package:atsign_ecare/screens/video_call.dart';
 import 'package:atsign_ecare/screens/welcome_screen/welcome_screen.dart';
 import 'package:atsign_ecare/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 class SetupRoutes {
-  static String initialRoute = Routes.DOCTORHOME;
+  static String initialRoute = Routes.HOMESCREEN;
 
   static Map<String, WidgetBuilder> get routes {
     return {
@@ -84,6 +84,7 @@ class SetupRoutes {
       // Patient Routes
       Routes.HOMESCREEN: (_) => HomeScreen(),
       Routes.AIANALYSISSCREEN: (_) => AiAnalysisScreen(),
+      Routes.UPLOADPRESCRIPTION: (_) => UploadPrescription(),
       Routes.AIANALYSISSCREENRESULT: (context) {
         Map<String, dynamic> args =
             ModalRoute.of(context).settings.arguments as Map<String, dynamic>;

@@ -71,4 +71,5 @@ class Routes {
   static const String MEDICATIONREMINDERS = '/medicationreminders';
   static const String PRESCRIPTIONSLIST = '/prescriptionslist';
   static const String PRESCRIPTIONSEDIT = '/prescriptionsedit';
+  static const String UPLOADPRESCRIPTION = '/uploadprescription';
 }

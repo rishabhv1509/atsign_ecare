@@ -101,8 +101,8 @@ class _AiAnalysisResultScreenState extends State<AiAnalysisResultScreen> {
                       for (int i = 0; i <= 11; i++)
                         getTableRow(
                           color: colors[i],
-                          text:
-                              "${rawData[i]["name"]} - ${rawData[i]["value"].toStringAsFixed(1)}%",
+                          text: "${rawData[i]["name"]} - ",
+                          percentage: rawData[i]["value"],
                           isSquare: false,
                           size: touchedIndex == i ? 18 : 16,
                           textColor:
@@ -149,6 +149,7 @@ TableRow getTableRow({
   Color color,
   String text,
   bool isSquare,
+  double percentage,
   double size,
   Color textColor,
 }) {
@@ -166,10 +167,25 @@ TableRow getTableRow({
     ),
     Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text(
-        text,
-        style: TextStyle(
-            fontSize: 16, fontWeight: FontWeight.bold, color: textColor),
+      child: Row(
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: percentage > 20 ? Colors.red : textColor,
+            ),
+          ),
+          Text(
+            percentage.toStringAsFixed(2).toString() + "%",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: percentage > 20 ? Colors.red : textColor,
+            ),
+          ),
+        ],
       ),
     ),
   ]);

@@ -2,7 +2,6 @@ import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/config/image_constants.dart';
 import 'package:atsign_ecare/data/category.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
-import 'package:atsign_ecare/services/shared_preferences_service.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
@@ -35,12 +34,12 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   }
 
   redirect() async {
-    var patientData =
-        await SharedPreferenceService.getData(SharedPrefConstant.PatientData);
-    if (patientData != "") Navigator.of(context).pushNamed(Routes.HOMESCREEN);
-    var doctorData =
-        await SharedPreferenceService.getData(SharedPrefConstant.DoctorData);
-    if (doctorData != "") Navigator.of(context).pushNamed(Routes.DOCTORHOME);
+    // var patientData =
+    //     await SharedPreferenceService.getData(SharedPrefConstant.PatientData);
+    // if (patientData != "") Navigator.of(context).pushNamed(Routes.HOMESCREEN);
+    // var doctorData =
+    //     await SharedPreferenceService.getData(SharedPrefConstant.DoctorData);
+    // if (doctorData != "") Navigator.of(context).pushNamed(Routes.DOCTORHOME);
   }
 
   @override

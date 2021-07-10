@@ -1,6 +1,6 @@
 import 'package:atsign_ecare/config/color_constants.dart';
-import 'package:atsign_ecare/config/image_constants.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
+import 'package:atsign_ecare/utils/constants.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
 import 'package:atsign_ecare/widgets/custom_padding.dart';
@@ -50,7 +50,8 @@ class ChatAppBar extends StatelessWidget {
                         color: ColorConstants.unselectedBoxShadow, width: 3),
                     borderRadius: BorderRadius.circular(100),
                     image: DecorationImage(
-                        image: AssetImage(AllImages().specialistImage),
+                        image: NetworkImage(
+                            MixedConstants.patients[0].profileImage),
                         fit: BoxFit.cover)),
               ),
             ),
@@ -59,12 +60,12 @@ class ChatAppBar extends StatelessWidget {
                 CustomPadding(
                   left: 14,
                   child: Text(
-                    'Robert Kilm',
+                    MixedConstants.patients[0].name,
                     style: CustomTextStyle.appBarTitleStyle,
                   ),
                 ),
                 Text(
-                  'MD, Neurology',
+                  "",
                   style: CustomTextStyle.subTitleStyle,
                 )
               ],

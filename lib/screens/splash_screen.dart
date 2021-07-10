@@ -1,11 +1,11 @@
 import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/config/image_constants.dart';
+import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/main_screen.dart';
 import 'package:atsign_ecare/screens/welcome_screen/welcome_screen.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
-import 'package:atsign_ecare/widgets/custom_padding.dart';
 import 'package:atsign_ecare/widgets/space_box.dart';
 import 'package:flutter/material.dart';
 
@@ -65,8 +65,8 @@ class _SplashScreenState extends State<SplashScreen> {
             rowCenter(
               [
                 Text(
-                  TextStrings().appName,
-                  style: CustomTextStyle.appTitleStyle,
+                  "WeCare",
+                  style: CustomTextStyle.appTitleStyle.copyWith(fontSize: 45),
                 ),
               ],
             ),
@@ -92,7 +92,7 @@ class _SplashScreenState extends State<SplashScreen> {
             SpaceBox(70),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, '/auth');
+                Navigator.pushNamed(context, Routes.SIGNUPSCREEN);
               },
               child: Container(
                 width: 511.toWidth,
@@ -109,29 +109,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
             ),
-            SpaceBox(50),
-            CustomPadding(
-              bottom: 45,
-              child: rowCenter(
-                [
-                  Text(
-                    TextStrings().noAccount,
-                    textAlign: TextAlign.center,
-                    style: CustomTextStyle.white26,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/auth');
-                    },
-                    child: Text(
-                      TextStrings().buttonSignup,
-                      textAlign: TextAlign.center,
-                      style: CustomTextStyle.whiteBold26,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            SpaceBox(100),
           ],
         ),
       ),

@@ -74,211 +74,214 @@ class _PrescriptionEditState extends State<PrescriptionEdit> {
       ),
       backgroundColor: ColorConstants.secondaryDarkAppColor,
       body: SafeArea(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 40.toHeight),
-              rowStart([
-                CustomPadding(
-                  left: 50.0,
-                  child: Text(
-                    "Edit Prescription",
-                    style: CustomTextStyle.titleTextStyle,
-                  ),
-                )
-              ]),
-              SizedBox(height: 40.toHeight),
-              Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  width: SizeConfig().screenWidth,
-                  child: Column(
-                    children: [
-                      Container(
-                          alignment: Alignment.center,
-                          width: 550.toWidth,
-                          color: ColorConstants.secondaryDarkAppColor,
-                          child: SingleChildScrollView(
-                            child: Form(
-                              key: _formkey,
-                              autovalidateMode: autovalidate,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomTextFormField(
-                                    showPrefixIcon: false,
-                                    controller: _contentCtrl,
-                                    keyboardType: TextInputType.name,
-                                    hintText: "Write here",
-                                    validator: validators.validateName,
-                                    maxLine: 4,
-                                  ),
-                                  SpaceBox(50.toHeight),
-                                ],
+        child: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 40.toHeight),
+                rowStart([
+                  CustomPadding(
+                    left: 50.0,
+                    child: Text(
+                      "Edit Prescription",
+                      style: CustomTextStyle.titleTextStyle,
+                    ),
+                  )
+                ]),
+                SizedBox(height: 40.toHeight),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: SizeConfig().screenWidth,
+                    child: Column(
+                      children: [
+                        Container(
+                            alignment: Alignment.center,
+                            width: 550.toWidth,
+                            color: ColorConstants.secondaryDarkAppColor,
+                            child: SingleChildScrollView(
+                              child: Form(
+                                key: _formkey,
+                                autovalidateMode: autovalidate,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CustomTextFormField(
+                                      showPrefixIcon: false,
+                                      controller: _contentCtrl,
+                                      keyboardType: TextInputType.name,
+                                      hintText: "Write here",
+                                      validator: validators.validateName,
+                                      maxLine: 4,
+                                    ),
+                                    SpaceBox(50.toHeight),
+                                  ],
+                                ),
                               ),
-                            ),
-                          )),
-                      SizedBox(height: 40.toHeight),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CustomPadding(
-                            left: 50.0,
-                            child: Text(
-                              "Medication",
-                              style: CustomTextStyle.titleTextStyle,
-                            ),
-                          ),
-                          Spacer(),
-                          MedicationAddBtn(addMedicines: addMedicines),
-                          SizedBox(width: 50.toWidth),
-                        ],
-                      ),
-                      SizedBox(height: 40.toHeight),
-                      Container(
-                        color: Colors.white,
-                        padding: EdgeInsets.only(
-                          top: 20.0,
-                          left: 60.toWidth,
-                          right: 60.toWidth,
-                        ),
-                        child: Table(
-                          columnWidths: {
-                            1: FractionColumnWidth(0.4),
-                          },
-                          border: TableBorder.all(color: Colors.black),
+                            )),
+                        SizedBox(height: 40.toHeight),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            TableRow(children: [
-                              Container(
-                                color: Color(0xFF1F2A37),
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Name',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                            CustomPadding(
+                              left: 50.0,
+                              child: Text(
+                                "Medication",
+                                style: CustomTextStyle.titleTextStyle,
+                              ),
+                            ),
+                            Spacer(),
+                            MedicationAddBtn(addMedicines: addMedicines),
+                            SizedBox(width: 50.toWidth),
+                          ],
+                        ),
+                        SizedBox(height: 40.toHeight),
+                        Container(
+                          color: Colors.white,
+                          padding: EdgeInsets.only(
+                            top: 20.0,
+                            left: 60.toWidth,
+                            right: 60.toWidth,
+                          ),
+                          child: Table(
+                            columnWidths: {
+                              1: FractionColumnWidth(0.4),
+                            },
+                            border: TableBorder.all(color: Colors.black),
+                            children: [
+                              TableRow(children: [
+                                Container(
+                                  color: Color(0xFF1F2A37),
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Name',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                color: Color(0xFF1F2A37),
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Time',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                Container(
+                                  color: Color(0xFF1F2A37),
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Time',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                color: Color(0xFF1F2A37),
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Interval',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                Container(
+                                  color: Color(0xFF1F2A37),
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Interval',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
+                              ]),
+                              if (_prescription.medicines.length > 0)
+                                for (int i = 0;
+                                    i < _prescription.medicines.length;
+                                    i++)
+                                  TableRow(children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child:
+                                          Text(_prescription.medicines[i].name),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child:
+                                          Text(_prescription.medicines[i].time),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                          _prescription.medicines[i].interval),
+                                    ),
+                                  ]),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 40.toHeight),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CustomPadding(
+                              left: 50.0,
+                              child: Text(
+                                "Tests",
+                                style: CustomTextStyle.titleTextStyle,
                               ),
-                            ]),
-                            if (_prescription.medicines.length > 0)
+                            ),
+                            Spacer(),
+                            TestsAddBtn(addTests: addTests),
+                            SizedBox(width: 50.toWidth),
+                          ],
+                        ),
+                        SizedBox(height: 40.toHeight),
+                        Container(
+                          width: double.infinity,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 15.toHeight),
                               for (int i = 0;
-                                  i < _prescription.medicines.length;
+                                  i < _prescription.tests.length;
                                   i++)
-                                TableRow(children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child:
-                                        Text(_prescription.medicines[i].name),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 4,
+                                    horizontal: 20,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child:
-                                        Text(_prescription.medicines[i].time),
+                                  child: Text(
+                                    "${i + 1})   ${_prescription.tests[i]}",
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                        _prescription.medicines[i].interval),
-                                  ),
-                                ]),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 40.toHeight),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CustomPadding(
-                            left: 50.0,
-                            child: Text(
-                              "Tests",
-                              style: CustomTextStyle.titleTextStyle,
-                            ),
+                                ),
+                            ],
                           ),
-                          Spacer(),
-                          TestsAddBtn(addTests: addTests),
-                          SizedBox(width: 50.toWidth),
-                        ],
-                      ),
-                      SizedBox(height: 40.toHeight),
-                      Container(
-                        width: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 15.toHeight),
-                            for (int i = 0; i < _prescription.tests.length; i++)
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 4,
-                                  horizontal: 20,
-                                ),
-                                child: Text(
-                                  "${i + 1})   ${_prescription.tests[i]}",
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                          ],
                         ),
-                      ),
-                      SizedBox(height: 40.toHeight),
-                      Spacer(),
-                      CustomButton(
-                        buttonText: "Update Prescription",
-                        onTap: () async {
-                          _prescription.content = _contentCtrl.text;
-                          String data = jsonEncode(
-                            Prescription(
-                              content: _contentCtrl.text,
-                              date: _prescription.date,
-                              doctor: _prescription.doctor,
-                              medicines: _prescription.medicines,
-                              patient: _prescription.patient,
-                              tests: _prescription.tests,
-                            ),
-                          );
-                          await SharedPreferenceService.setData(
-                              SharedPrefConstant.Prescription, data);
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
+                        SizedBox(height: 40.toHeight),
+                        CustomButton(
+                          buttonText: "Update Prescription",
+                          onTap: () async {
+                            _prescription.content = _contentCtrl.text;
+                            String data = jsonEncode(
+                              Prescription(
+                                content: _contentCtrl.text,
+                                date: _prescription.date,
+                                doctor: _prescription.doctor,
+                                medicines: _prescription.medicines,
+                                patient: _prescription.patient,
+                                tests: _prescription.tests,
+                              ),
+                            );
+                            await SharedPreferenceService.setData(
+                                SharedPrefConstant.Prescription, data);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 40.toHeight),
-            ],
+                SizedBox(height: 40.toHeight),
+              ],
+            ),
           ),
         ),
       ),
