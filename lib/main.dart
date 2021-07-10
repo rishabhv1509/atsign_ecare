@@ -7,6 +7,6 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   NotificationService notificationService = NotificationService();
   notificationService.init();
-  notificationService.initializePlatformSpecifics();
+  // notificationService.initializePlatformSpecifics();
   runApp(ProviderScope(child: MyApp()));
 }

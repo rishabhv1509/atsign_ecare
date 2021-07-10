@@ -9,14 +9,18 @@ class DoctorsController {
   static DoctorsController _instance = DoctorsController._();
   factory DoctorsController() => _instance;
   BackendService _backendService = BackendService.getInstance();
-  Map<String, Map<String, dynamic>> doctorTags = {};
-  addDoctor(AtContact doctor, Map<String, dynamic> doctorDetails) async {
-    doctorTags.putIfAbsent(jsonEncode(doctor), () => doctorDetails);
+  Map<String, dynamic> doctorTags = {};
+  addDoctor() async {
     AtKey doctorsKey = AtKey()
       ..key = 'doctorDetails'
       ..metadata = Metadata();
     await _backendService.atClientInstance
         .put(doctorsKey, jsonEncode(doctorTags));
+  }
+
+  putDoctorDetails(Map<String, dynamic> details) {
+    doctorTags.addEntries(details.entries);
+    print('doctor tags===>$doctorTags');
   }
 
   getDoctorsDetails() async {

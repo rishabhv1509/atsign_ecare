@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+
 import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/config/image_constants.dart';
 import 'package:atsign_ecare/models/patient.dart';
@@ -17,6 +18,7 @@ import 'package:atsign_ecare/widgets/space_box.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_recognition/speech_recognition.dart';
+// import 'package:speech_recognition/speech_recognition.dart';
 
 class HomeScreen extends StatefulWidget {
   final String userType;
@@ -71,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
     print(patient.name);
   }
 
-  Widget _buildButton({String label, VoidCallback onPressed}) => new Padding(
+  Widget _buildButton({String label, onPressed}) => new Padding(
       padding: new EdgeInsets.all(12.0),
       child: new RaisedButton(
         color: Colors.cyan.shade600,

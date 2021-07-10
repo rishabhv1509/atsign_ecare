@@ -3,6 +3,7 @@ import 'package:atsign_ecare/config/image_constants.dart';
 import 'package:atsign_ecare/config/theme_data.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/doctor/profile/doctor_profile.dart';
+import 'package:atsign_ecare/services/notification_service.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/widgets/carousel_sliders_item.dart';
@@ -45,6 +46,11 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            ElevatedButton(
+                onPressed: () {
+                  NotificationService().showNotification('from');
+                },
+                child: Text('press me')),
             Container(
                 margin: EdgeInsets.only(
                   top: 20.toHeight,

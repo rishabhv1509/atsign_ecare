@@ -3,6 +3,7 @@ import 'package:atsign_ecare/config/image_constants.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/screens/main_screen.dart';
 import 'package:atsign_ecare/screens/welcome_screen/welcome_screen.dart';
+import 'package:atsign_ecare/services/backend_service.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
 import 'package:atsign_ecare/utils/text_styles.dart';
@@ -16,6 +17,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   String phoneNumber, userType;
+  BackendService _backendService = BackendService.getInstance();
   @override
   void initState() {
     super.initState();

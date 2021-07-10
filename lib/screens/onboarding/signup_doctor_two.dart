@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/config/image_constants.dart';
 import 'package:atsign_ecare/config/validators.dart';
+import 'package:atsign_ecare/controllers/doctors_controller.dart';
 import 'package:atsign_ecare/data/category.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
@@ -243,6 +244,11 @@ class _SignUpScreenDoctorTwoState extends State<SignUpScreenDoctorTwo> {
                         CustomButton(
                             buttonText: TextStrings().buttonContinue,
                             onTap: () {
+                              Map<String, dynamic> details = {
+                                'degree': degreeFile.path,
+                                'id': idFile.path,
+                              };
+                              DoctorsController().putDoctorDetails(details);
                               Navigator.pushNamed(
                                   context, Routes.SIGNUPSCREENDOCTORTHREE);
                             })

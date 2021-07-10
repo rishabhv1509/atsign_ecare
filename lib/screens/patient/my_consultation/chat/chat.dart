@@ -15,7 +15,7 @@ class Chat extends StatefulWidget {
 class _ChatState extends State<Chat> {
   @override
   void initState() {
-    setChatWithAtSign('@junglegreen16inc', isGroup: false);
+    setChatWithAtSign('@adorabledinosaur', isGroup: false);
     super.initState();
   }
 

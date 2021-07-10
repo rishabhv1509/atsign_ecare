@@ -1,6 +1,8 @@
+import 'package:at_contact/at_contact.dart';
 import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/config/image_constants.dart';
 import 'package:atsign_ecare/config/validators.dart';
+import 'package:atsign_ecare/controllers/doctors_controller.dart';
 import 'package:atsign_ecare/data/category.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
@@ -45,6 +47,15 @@ class _SignUpScreenDoctorState extends State<SignUpScreenDoctor> {
   GlobalKey<FormState> _formkey = new GlobalKey<FormState>();
   Validators validators = Validators();
   AutovalidateMode autovalidate = AutovalidateMode.disabled;
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneNumberController.dispose();
+    _emailController.dispose();
+    _specialityController.dispose();
+    _locationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,6 +192,15 @@ class _SignUpScreenDoctorState extends State<SignUpScreenDoctor> {
                         CustomButton(
                             buttonText: "Upload Documents",
                             onTap: () {
+                              Map<String, dynamic> details = {
+                                'name': _nameController.text,
+                                'phone': _phoneNumberController.text,
+                                'email': _emailController.text,
+                                'speciality': _specialityController.text,
+                                'location': _locationController.text,
+                                'yrsOfExp': _yearOfExp
+                              };
+                              DoctorsController().putDoctorDetails(details);
                               Navigator.pushNamed(
                                 context,
                                 Routes.SIGNUPSCREENDOCTORTWO,
