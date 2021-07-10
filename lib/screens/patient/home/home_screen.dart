@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:atsign_ecare/config/color_constants.dart';
@@ -15,6 +16,7 @@ import 'package:atsign_ecare/widgets/fab.dart';
 import 'package:atsign_ecare/widgets/space_box.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:speech_recognition/speech_recognition.dart';
 
 class HomeScreen extends StatefulWidget {
   final String userType;
@@ -33,10 +35,33 @@ class _HomeScreenState extends State<HomeScreen> {
     'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80'
   ];
   Patient patient;
+  SpeechRecognition _speech;
+
+  bool _speechRecognitionAvailable = false;
+  bool _isListening = false;
+
+  String transcription = '';
+
+  String _currentLocale = 'en_US';
 
   @override
   void initState() {
+    activateSpeechRecognizer();
     super.initState();
+  }
+
+  void activateSpeechRecognizer() {
+    print('_MyAppState.activateSpeechRecognizer... ');
+    _speech = new SpeechRecognition();
+    _speech.setAvailabilityHandler(onSpeechAvailability);
+    _speech.setCurrentLocaleHandler(onCurrentLocale);
+    _speech.setRecognitionStartedHandler(onRecognitionStarted);
+    _speech.setRecognitionResultHandler(onRecognitionResult);
+    _speech.setRecognitionCompleteHandler(onRecognitionComplete);
+    // _speech
+    _speech
+        .activate()
+        .then((res) => setState(() => _speechRecognitionAvailable = res));
   }
 
   getData() async {
@@ -46,16 +71,81 @@ class _HomeScreenState extends State<HomeScreen> {
     print(patient.name);
   }
 
+  Widget _buildButton({String label, VoidCallback onPressed}) => new Padding(
+      padding: new EdgeInsets.all(12.0),
+      child: new RaisedButton(
+        color: Colors.cyan.shade600,
+        onPressed: onPressed,
+        child: new Text(
+          label,
+          style: const TextStyle(color: Colors.white),
+        ),
+      ));
+
+  void start() => _speech
+      .listen(locale: _currentLocale)
+      .then((result) => print('_MyAppState.start => result ${result}'));
+
+  void cancel() =>
+      _speech.cancel().then((result) => setState(() => _isListening = result));
+
+  void stop() =>
+      _speech.stop().then((result) => setState(() => _isListening = result));
+
+  void onSpeechAvailability(bool result) =>
+      setState(() => _speechRecognitionAvailable = result);
+
+  void onCurrentLocale(String locale) =>
+      setState(() => _currentLocale = locale);
+
+  void onRecognitionStarted() => setState(() => _isListening = true);
+
+  void onRecognitionResult(String text) => setState(() {
+        transcription = text;
+        print("text => $text");
+      });
+
+  void onRecognitionComplete() {
+    print("object => $transcription");
+    setState(() => _isListening = false);
+    openScreenFromVoiceCommand();
+    Timer(Duration(seconds: 4), () {
+      transcription = '';
+      setState(() {});
+    });
+  }
+
+  openScreenFromVoiceCommand() {
+    if (transcription.toLowerCase().contains("prescription")) {
+      Navigator.pushNamed(
+        context,
+        Routes.MYPRESCRIPTIONS,
+      );
+    }
+    if (transcription.toLowerCase().contains("consult")) {
+      Navigator.pushNamed(context, Routes.MYCONSULTATION,
+          arguments: {'chatWithAtSign': '@junglegreen16inc'});
+    }
+    if (transcription.toLowerCase().contains("checkup")) {
+      Navigator.pushNamed(context, Routes.HEALTHCHECKUP);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: ColorConstants.secondaryDarkAppColor,
       floatingActionButton: FabButton(
-        onTap: () {
-          Navigator.pushNamed(context, Routes.CHOOSEDOCTOR);
-        },
-      ),
+          onTap: () {
+            // Navigator.pushNamed(context, Routes.CHOOSEDOCTOR);
+          },
+          onLongPress: () {
+            transcription = "";
+            _speechRecognitionAvailable && !_isListening ? start() : null;
+          },
+          transcription: transcription,
+          listening: _isListening),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: CustomAppBar(
         elevation: 2,
