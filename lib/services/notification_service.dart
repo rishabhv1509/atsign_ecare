@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:atsign_ecare/services/navigation_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/rxdart.dart';
@@ -16,32 +17,46 @@ class NotificationService {
   final BehaviorSubject<ReceivedNotification>
       didReceivedLocalNotificationSubject =
       BehaviorSubject<ReceivedNotification>();
-
+  final BehaviorSubject<String> selectNotificationSubject =
+      BehaviorSubject<String>();
+  String selectedNotificationPayload;
+  NotificationAppLaunchDetails notificationAppLaunchDetails;
   init() async {
     _notificationsPlugin = FlutterLocalNotificationsPlugin();
-
+    notificationAppLaunchDetails =
+        await _notificationsPlugin.getNotificationAppLaunchDetails();
+    if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
+      selectedNotificationPayload = notificationAppLaunchDetails.payload;
+    }
     if (Platform.isIOS) {
       _requestIOSPermission();
     }
     initializePlatformSpecifics();
+    _configureDidReceiveLocalNotificationSubject();
+  }
+
+  dispose() {
+    didReceivedLocalNotificationSubject.close();
+    selectNotificationSubject.close();
   }
 
   initializePlatformSpecifics() {
     var initializationSettingsAndroid =
         AndroidInitializationSettings('notification_icon');
-    var initializationSettingsIOS = IOSInitializationSettings(
-      requestAlertPermission: true,
-      requestBadgePermission: true,
-      requestSoundPermission: false,
-      onDidReceiveLocalNotification: (id, title, body, payload) async {
-        ReceivedNotification receivedNotification = ReceivedNotification(
-            id: id, title: title, body: body, payload: payload);
-        didReceivedLocalNotificationSubject.add(receivedNotification);
-      },
-    );
+    final IOSInitializationSettings initializationSettingsIOS =
+        IOSInitializationSettings(
+            requestAlertPermission: false,
+            requestBadgePermission: false,
+            requestSoundPermission: false,
+            onDidReceiveLocalNotification:
+                (int id, String title, String body, String payload) async {
+              didReceivedLocalNotificationSubject.add(ReceivedNotification(
+                  id: id, title: title, body: body, payload: payload));
+            });
 
     initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+    _notificationsPlugin.initialize(initializationSettings);
   }
 
   _requestIOSPermission() {
@@ -55,6 +70,32 @@ class NotificationService {
         );
   }
 
+  void _configureDidReceiveLocalNotificationSubject() {
+    didReceivedLocalNotificationSubject.stream
+        .listen((ReceivedNotification receivedNotification) async {
+      await showDialog(
+        context: NavService.navKey.currentContext,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+          title: receivedNotification.title != null
+              ? Text(receivedNotification.title)
+              : Text('receivedNotification.title'),
+          content: receivedNotification.body != null
+              ? Text(receivedNotification.body)
+              : Text('receivedNotification.body'),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              isDefaultAction: true,
+              onPressed: () async {
+                Navigator.of(context, rootNavigator: true).pop();
+              },
+              child: const Text('Ok'),
+            )
+          ],
+        ),
+      );
+    });
+  }
+
   setOnNotificationClick(Function onNotificationClick) async {
     await _notificationsPlugin.initialize(initializationSettings,
         onSelectNotification: (String payload) async {
@@ -63,6 +104,7 @@ class NotificationService {
   }
 
   Future<void> showNotification(String from) async {
+    print('object');
     var androidChannelSpecifics = AndroidNotificationDetails(
       'CHANNEL_ID',
       'CHANNEL_NAME',
@@ -76,16 +118,10 @@ class NotificationService {
     var iosChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
         android: androidChannelSpecifics, iOS: iosChannelSpecifics);
-    // NotificationPayload payload = NotificationPayload(
-    //   name: from,
-    //   // id: int.parse(id)
-    // );
-    await _notificationsPlugin.show(
-        0,
-        '$from sent you a file',
-        'Open your app to see the file preview and take actions',
-        platformChannelSpecifics,
-        payload: jsonEncode({}));
+
+    await _notificationsPlugin.show(0, 'Medicine reminder',
+        'Time to take Disprin', platformChannelSpecifics,
+        payload: jsonEncode({"hello": "i am here"}));
   }
 
   cancelNotifications() async {

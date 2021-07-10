@@ -386,7 +386,7 @@ class BackendService {
           // await onboard(atsign: atsign, atClientPreference: atClientPreference, atClientServiceInstance: );
           await Navigator.pushNamedAndRemoveUntil(
               NavService.navKey.currentContext,
-              Routes.HOMESCREEN,
+              Routes.DOCTORHOME,
               (Route<dynamic> route) => false);
         },
         onError: (error) {
