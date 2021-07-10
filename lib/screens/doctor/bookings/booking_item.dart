@@ -80,7 +80,7 @@ class _BookingItemState extends State<BookingItem> {
                                       _backendService.currentAtSign);
                                   Navigator.pushNamed(context, Routes.CHAT,
                                       arguments: {
-                                        'chatWith': '@junglegreen16inc'
+                                        'chatWith': '@adorabledinosaur'
                                       });
                                 }),
                                 customContact(Icons.phone, () {

@@ -19,6 +19,7 @@ import 'package:atsign_ecare/screens/doctor/prescriptions/prescriptions_edit.dar
 import 'package:atsign_ecare/screens/doctor/profile/doctor_profile.dart';
 import 'package:atsign_ecare/screens/doctor/profile/editprofilescreen.dart';
 import 'package:atsign_ecare/screens/doctor/total_consultation/total_consultation_screen.dart';
+import 'package:atsign_ecare/screens/home/home.dart';
 import 'package:atsign_ecare/screens/onboarding/authentication_screen.dart';
 import 'package:atsign_ecare/screens/onboarding/signup_doctor.dart';
 import 'package:atsign_ecare/screens/onboarding/signup_doctor_three.dart';
@@ -56,10 +57,11 @@ import 'package:atsign_ecare/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 class SetupRoutes {
-  static String initialRoute = Routes.DOCTORHOME;
+  static String initialRoute = Routes.SPLASHSCREEN;
 
   static Map<String, WidgetBuilder> get routes {
     return {
+      Routes.HOME: (_) => Home(),
       Routes.WELCOME_SCREEN: (context) => WelcomeScreen(),
       Routes.WELCOMESCREEN: (_) => WelcomeScreen(),
       Routes.SPLASHSCREEN: (_) => SplashScreen(),

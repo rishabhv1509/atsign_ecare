@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:atsign_ecare/config/color_constants.dart';
 import 'package:atsign_ecare/config/theme_data.dart';
+import 'package:atsign_ecare/controllers/doctors_controller.dart';
 import 'package:atsign_ecare/routes/route_names.dart';
 import 'package:atsign_ecare/utils/size_config.dart';
 import 'package:atsign_ecare/utils/text_strings.dart';
@@ -23,9 +24,17 @@ class _SignUpScreenDoctorThreeState extends State<SignUpScreenDoctorThree> {
   double _currentSliderValue = 10;
   bool onChoose = true;
   File _image;
+  TextEditingController _bioController;
   String phoneNumber;
   void initState() {
+    _bioController = TextEditingController();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _bioController.dispose();
+    super.dispose();
   }
 
   final ImagePicker _picker = ImagePicker();
@@ -109,6 +118,7 @@ class _SignUpScreenDoctorThreeState extends State<SignUpScreenDoctorThree> {
                 titleText(title: TextStrings().profileDetails),
                 contentPadding(
                     child: TextFormField(
+                  controller: _bioController,
                   decoration: InputDecoration(
                     hintText: 'Type..',
                     hintStyle: CustomTextStyle.chatLabel,
@@ -183,6 +193,16 @@ class _SignUpScreenDoctorThreeState extends State<SignUpScreenDoctorThree> {
                     width: 600.toWidth,
                     buttonText: TextStrings().buttonSubmit,
                     onTap: () {
+                      Map<String, dynamic> details = {
+                        'profile_picture': _image.path,
+                        'profile_bio': _bioController.text,
+                        'available_slots': selectedDate,
+                        'time_slots': selectedSlots,
+                        'price': _currentSliderValue
+                      };
+                      DoctorsController().putDoctorDetails(details);
+                      DoctorsController().addDoctor();
+                      DoctorsController().getDoctorsDetails();
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           Routes.DOCTORHOME, (Route<dynamic> route) => false);
                     },
