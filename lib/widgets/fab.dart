@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 
 class FabButton extends StatefulWidget {
   final Function onTap;
-  FabButton({this.onTap});
+  final Function onLongPress;
+  final String transcription;
+  final bool listening;
+  FabButton({this.onTap, this.onLongPress, this.transcription, this.listening});
   @override
   _FabButtonState createState() => _FabButtonState();
 }
@@ -14,25 +17,56 @@ class _FabButtonState extends State<FabButton> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return CircleAvatar(
-      backgroundColor: ColorConstants.secondaryDarkAppColor,
-      radius: 55.toWidth,
-      child: FloatingActionButton(
-        backgroundColor: ColorConstants.secondaryDarkAppColor,
-        onPressed: widget.onTap,
-        tooltip: 'Increment',
-        child: Center(
-          child: CircleAvatar(
-            backgroundColor: ColorConstants.logoBg,
-            radius: 35,
-            child: Image.asset(
-              AllImages().fabIcon,
-              width: 68.toWidth,
-              height: 68.toHeight,
+    return InkWell(
+      onLongPress: () {
+        print("long pressed");
+        widget.onLongPress();
+      },
+      child: Container(
+        height: 120,
+        width: 300,
+        margin: EdgeInsets.all(16),
+        color: Colors.transparent,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            if (widget.transcription != '')
+              new Center(
+                child: new Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(6.0),
+                      ),
+                    ),
+                    elevation: 10,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: new Text(
+                        widget.transcription ?? '',
+                        textAlign: TextAlign.center,
+                      ),
+                    )),
+              ),
+            Center(
+              child: CircleAvatar(
+                  backgroundColor: ColorConstants.logoBg,
+                  radius: 35,
+                  child: Icon(
+                    widget.listening == null || widget.listening == false
+                        ? Icons.settings_voice
+                        : Icons.more_horiz,
+                    // color: activated?C:secondaryAppColor,
+                  )
+                  //    Image.asset(
+                  //     AllImages().fabIcon,
+                  //     width: 68.toWidth,
+                  //     height: 68.toHeight,
+                  //   ),
+                  ),
             ),
-          ),
+          ],
         ),
-        elevation: 4.0,
       ),
     );
   }

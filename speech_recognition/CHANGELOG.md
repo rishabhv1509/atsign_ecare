@@ -1,0 +1,5 @@
+## 0.2.0+
+- use the device detected locale by default
+
+## 0.1.0
+- basic recognition
